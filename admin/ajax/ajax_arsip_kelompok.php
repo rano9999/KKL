@@ -19,7 +19,7 @@ if($_GET['action'] == "table_data"){
       $row[] = "Kelompok - " . $r['kelompok'];
   	  $row[] = $r['periode'];
       $data[] = $row;
-      $no++;
+      // $no++;
    }
 
    $output = array("data" => $data);

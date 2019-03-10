@@ -53,11 +53,11 @@ $cp = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(jk) as jml_p FRO
     </div>
     <div class="panel panel-default">
       <!-- Default panel contents -->
-      <div class="panel-heading">Analisis Kelompok</div>
+      <div class="panel-heading">Analisis Kelompok/Desa</div>
       <div class="panel-body" id="display_info">
         <table width="100%">
           <tr>
-            <td style="padding:5px">Jumlah Kelompok yg dibutuhkan</td>
+            <td style="padding:5px">Jumlah Kelompok/Desa yg dibutuhkan</td>
             <td><span class="badge"><?= $jml; ?></span></td>
           </tr>
           <tr>
@@ -73,15 +73,15 @@ $cp = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(jk) as jml_p FRO
             <td><span class="badge"><?= $cekP['jml_P'] ?></span></td>
           </tr>
           <tr>
-            <td style="padding:5px">Jumlah Peserta Laki-laki tiap kelompok</td>
+            <td style="padding:5px">Jumlah Peserta Laki-laki tiap kelompok/Desa</td>
             <td><span class="badge"><?= ceil($cekL['jml_L']/$jml) ?></span></td>
           </tr>
           <tr>
-            <td style="padding:5px">Jumlah Peserta Perempuan tiap kelompok</td>
+            <td style="padding:5px">Jumlah Peserta Perempuan tiap kelompok/Desa</td>
             <td><span class="badge"><?= ceil($cekP['jml_P']/$jml) ?></span></td>
           </tr>
           <tr>
-            <td style="padding:5px">Jumlah kelompok setelah dibagi</td>
+            <td style="padding:5px">Jumlah kelompok/Desa setelah dibagi</td>
             <td><span class="badge"><?= ceil($jml_p/$jml) ?></span></td>
           </tr>
           <tr>
@@ -144,6 +144,6 @@ $cp = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(jk) as jml_p FRO
 
 <?php
 
-create_table(array("NIM", "Nama", "Jenis Kelamin", "Kategori", "Kelompok", "Periode"));
+create_table(array("NIM", "Nama", "Jenis Kelamin", "Kategori", "Kelompok/Desa", "Periode"));
 
 ?>

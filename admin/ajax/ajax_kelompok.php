@@ -18,10 +18,10 @@ if($_GET['action'] == "table_data"){
       $row[] = $siswa['nama'];
       $row[] = $siswa['jk'];
       $row[] = $r['kategori'];
-      $row[] = "Kelompok - " . $r['kelompok'];
+      $row[] = "Kelompok/Desa - " . $r['kelompok'];
   	  $row[] = $r['periode'];
       $data[] = $row;
-      $no++;
+      // $no++;
    }
 
    $output = array("data" => $data);

@@ -20,13 +20,13 @@ create_button("success", "plus-sign", "Tambah", "btn-add", "form_add()");
 
 
 //Membuat header dan footer tabel
-create_table(array("Tahun Periode", "Jumlah Kelompok", "Aktif", "Aksi"));
+create_table(array("Tahun Periode", "Jumlah Desa", "Aktif", "Aksi"));
 
 //Membuat form tambah dan edit data
 open_form("modal_tahun", "return save_data()");
    create_textbox("Id Periode", "id_tahun", "text", 6, "", "");
    create_textbox("Tahun Periode", "periode", "text", 6, "", "required");
-   create_textbox("Jumlah Kelompok", "jml_kel", "number", 6, "", "required");
+   create_textbox("Jumlah Desa", "jml_kel", "number", 6, "", "required");
    echo '
    <div class="form-group" id="aktif" hidden>
    <label class="col-sm-2 control-label">Aktifasi</label>
