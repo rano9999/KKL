@@ -79,7 +79,7 @@ $cp = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(jk) as jml_p FRO
  <h5>Jumlah mahasiswa dengan tipe Conscientiousness = <?= $cc['jml'] ?> <br> Jumlah mahasiswa dengan tipe Conscientiousness laki laki = <?= $cl['jml_l'] ?> <br> Jumlah mahasiswa dengan tipe Conscientiousness perempuan = <?= $cp['jml_p'] ?> </h5>
 <?php
 
-$qL = mysqli_query($mysqli, "SELECT * FROM nilai, siswa WHERE nilai.nim = siswa.nim AND nilai.periode = '$periode' ORDER BY nilai.kategori ASC");
+$qL = mysqli_query($mysqli, "SELECT * FROM nilai, siswa WHERE nilai.nim = siswa.nim AND nilai.periode = '$periode' ORDER BY nilai.kategori, siswa.jk ASC");
 $qLarray = array();
 $qP = mysqli_query($mysqli, "SELECT * FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.jk = 'P' AND nilai.periode = '$periode' ORDER BY nilai.kategori ASC");
 $qParray = array();
@@ -98,7 +98,7 @@ while ($kl = mysqli_fetch_array($qL)) {
   echo $md."<br>";
   $qcL = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM kel_laki WHERE nim = '$kl[nim]' AND periode = '$periode'"));
   if($qcL > 0){
-    
+
   }else{
     mysqli_query($mysqli, "INSERT INTO kel_laki (nim,kategori,periode) VALUES ('$kl[nim]','$kl[kategori]','$periode')");
   }
@@ -106,38 +106,39 @@ while ($kl = mysqli_fetch_array($qL)) {
   if($cekDK > 0){
 
   }else{
-  $result2 = mysqli_query($mysqli, "INSERT into kelompok (nim,kategori,kelompok,periode) VALUES ('$kl[nim]','$kl[kategori]','$md','$periode')");
+  $result2 = mysqli_query($mysqli, "INSERT into kelompok (nim,kategori,kelompok,periode,jk) VALUES ('$kl[nim]','$kl[kategori]','$md','$periode','L')");
   }
   $md++;
 }
 
 echo "<br>";
 
-$mh = 1;
-while ($kP = mysqli_fetch_array($qP)) {
-  if($mh > $jml && $mh < $countP['jmlid']){
-    $mh = 1;
-
-  }
-  // echo $mh."<br>";
-  $qcP = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM kel_perempuan WHERE nim = '$kP[nim]' AND periode = '$periode'"));
-  if($qcP > 0){
-
-  }else{
-    mysqli_query($mysqli, "INSERT INTO kel_perempuan (nim,kategori,periode) VALUES ('$kP[nim]','$kP[kategori]','$periode')");
-  }
-  $cekDK = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM kelompok WHERE periode = '$periode' AND nim = '$kP[nim]'"));
-  if($cekDK > 0){
-
-  }else{
-  $result2 = mysqli_query($mysqli, "INSERT into kelompok (nim,kategori,kelompok,periode) VALUES ('$kP[nim]','$kP[kategori]','$mh','$periode')");
-  }
-  $mh++;
-}
+// $mh = 1;
+// while ($kP = mysqli_fetch_array($qP)) {
+//   if($mh > $jml && $mh < $countP['jmlid']){
+//     $mh = 1;
+//
+//   }
+//   echo $mh."<br>";
+//   $qcP = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM kel_perempuan WHERE nim = '$kP[nim]' AND periode = '$periode'"));
+//   if($qcP > 0){
+//
+//   }else{
+//     mysqli_query($mysqli, "INSERT INTO kel_perempuan (nim,kategori,periode) VALUES ('$kP[nim]','$kP[kategori]','$periode')");
+//   }
+//   $cekDK = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM kelompok WHERE periode = '$periode' AND nim = '$kP[nim]'"));
+//   if($cekDK > 0){
+//
+//   }else{
+//   $result2 = mysqli_query($mysqli, "INSERT into kelompok (nim,kategori,kelompok,periode,jk) VALUES ('$kP[nim]','$kP[kategori]','$mh','$periode','P')");
+//   }
+//   $mh++;
+// }
 
 $li = mysqli_fetch_array(mysqli_query($mysqli,"SELECT max(kelompok) as max, min(kelompok) as min FROM kelompok WHERE periode = '$periode'"));
-echo $li['max']."<br>";
-echo $li['min']."<br>";
+
+echo "<br>";
+
 for ($v=1; $v <= $li['max'] ; $v++) {
 
   $lihat = mysqli_fetch_array(mysqli_query($mysqli,"SELECT *, count(id) as jmlKel FROM kelompok WHERE kelompok = '$v'"));

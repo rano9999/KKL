@@ -51,7 +51,7 @@ elseif($_GET['action'] == "import"){
     $nilaiI = $row['E']; // Ambil data jenis kelamin
     $nilaiS = $row['F']; // Ambil data jenis kelamin
     $nilaiC = $row['G']; // Ambil data jenis kelamin
-    $periode = $per['periode'];
+    $periode = $row['H'];
     // Cek jika semua data tidak diisi
     if(empty($nim) && empty($kategori))
       continue; // Lewat data pada baris ini (masuk ke looping selanjutnya / baris selanjutnya)

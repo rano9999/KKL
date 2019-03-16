@@ -9,7 +9,7 @@ $jml = $cek['jml_kel'];
 $cekL = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(siswa.jk) as jml_L FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.jk = 'L' AND nilai.periode = '$periode'"));
 $cekP = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(siswa.jk) as jml_P FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.jk = 'P' AND nilai.periode = '$periode'"));
 
-$qL = mysqli_query($mysqli, "SELECT * FROM nilai, siswa WHERE nilai.nim = siswa.nim AND nilai.periode = '$periode' ORDER BY nilai.kategori ASC");
+$qL = mysqli_query($mysqli, "SELECT * FROM nilai, siswa WHERE nilai.nim = siswa.nim AND nilai.periode = '$periode' ORDER BY nilai.kategori, siswa.jk ASC");
 $qP = mysqli_query($mysqli, "SELECT * FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.jk = 'P' AND nilai.periode = '$periode' ORDER BY nilai.kategori ASC");
 $countL = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(id) as jmlid from kel_laki WHERE periode = '$periode'"));
 $countP = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(id) as jmlid from kel_perempuan WHERE periode = '$periode'"));
@@ -24,27 +24,27 @@ while ($kl = mysqli_fetch_array($qL)) {
   if($cekDK > 0){
 
   }else{
-  $result2 = mysqli_query($mysqli, "INSERT into kelompok (nim,kategori,kelompok,periode) VALUES ('$kl[nim]','$kl[kategori]','$md','$periode')");
+    $result2 = mysqli_query($mysqli, "INSERT into kelompok (nim,kategori,kelompok,periode,jk) VALUES ('$kl[nim]','$kl[kategori]','$md','$periode','$kl[jk]')");
   }
   $md++;
 }
-
-echo "<br>";
-
-$mh = 1;
-while ($kP = mysqli_fetch_array($qP)) {
-  if($mh > $jml && $mh < $countP['jmlid']){
-    $mh = 1;
-
-  }
-  
-  $cekDK = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM kelompok WHERE periode = '$periode' AND nim = '$kP[nim]'"));
-  if($cekDK > 0){
-
-  }else{
-  $result2 = mysqli_query($mysqli, "INSERT into kelompok (nim,kategori,kelompok,periode) VALUES ('$kP[nim]','$kP[kategori]','$mh','$periode')");
-  }
-  $mh++;
-}
+//
+// echo "<br>";
+//
+// $mh = 1;
+// while ($kP = mysqli_fetch_array($qP)) {
+//   if($mh > $jml && $mh < $countP['jmlid']){
+//     $mh = 1;
+//
+//   }
+//
+//   $cekDK = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM kelompok WHERE periode = '$periode' AND nim = '$kP[nim]'"));
+//   if($cekDK > 0){
+//
+//   }else{
+//   $result2 = mysqli_query($mysqli, "INSERT into kelompok (nim,kategori,kelompok,periode) VALUES ('$kP[nim]','$kP[kategori]','$mh','$periode')");
+//   }
+//   $mh++;
+// }
 
  ?>

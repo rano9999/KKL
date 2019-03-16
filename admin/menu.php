@@ -18,7 +18,7 @@ function menu_admin($link, $icon, $title){
 
 if($_SESSION['leveluser'] == "admin"){
    echo menu_admin("home.php", "home", "Beranda");
-   echo menu_admin("view/view_soal.php", "edit", "Soal");
+   // echo menu_admin("view/view_soal.php", "edit", "Soal");
    echo menu_admin("view/view_nilai.php", "check-square-o", "Nilai");
    echo menu_admin("view/view_siswa.php", "user", "Mahasiswa");
    echo menu_admin("view/view_tahun.php", "list-alt", "Periode");
