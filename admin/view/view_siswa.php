@@ -14,7 +14,7 @@ include "../../library/function_form.php";
 
 //Membuat judul, tombol tambah, tombol import dan tombol cetak kartu
 create_title("list-alt", "Manajemen Mahasiswa");
-create_button("info", "print", "Cetak Kartu", "btn-print", "form_print()");
+// create_button("info", "print", "Cetak Kartu", "btn-print", "form_print()");
 create_button("success", "plus-sign", "Tambah", "btn-add", "form_add()");
 create_button("success", "plus-sign", "Import Data", "btn-add", "form_import()");
 

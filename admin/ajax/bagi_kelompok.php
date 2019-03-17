@@ -11,8 +11,8 @@ $cekP = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(siswa.jk) as jml_
 
 $qL = mysqli_query($mysqli, "SELECT * FROM nilai, siswa WHERE nilai.nim = siswa.nim AND nilai.periode = '$periode' ORDER BY nilai.kategori, siswa.jk ASC");
 $qP = mysqli_query($mysqli, "SELECT * FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.jk = 'P' AND nilai.periode = '$periode' ORDER BY nilai.kategori ASC");
-$countL = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(id) as jmlid from kel_laki WHERE periode = '$periode'"));
-$countP = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(id) as jmlid from kel_perempuan WHERE periode = '$periode'"));
+$countL = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(id) as jmlid from kel_penampung WHERE periode = '$periode'"));
+// $countP = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(id) as jmlid from kel_perempuan WHERE periode = '$periode'"));
 
 $md = 1;
 while ($kl = mysqli_fetch_array($qL)) {

@@ -4,7 +4,7 @@ $("#loading").hide();
 $(function(){
    table = $('.table').DataTable({
       "processing" : true,
-      "pageLength" : 25,
+      "pageLength" : 10,
       "paging" : true,
       "ajax" : {
          "url" : "ajax/ajax_kelompok.php?action=table_data",

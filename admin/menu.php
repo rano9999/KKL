@@ -42,7 +42,7 @@ else{
 
 <?php
    echo menu_admin("view/view_profil.php", "user", $_SESSION['namalengkap']);
-   echo menu_admin("logout.php", "off", "Keluar");
+   echo menu_admin("logout.php", "sign-out", "Keluar");
 ?>
 
    </ul>
