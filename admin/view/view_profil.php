@@ -12,7 +12,7 @@ include "../../library/function_form.php";
 create_title("user", "Profil User");
 
 echo '<hr/><form id="form-profil" class="form-horizontal" onsubmit="return edit_data()">';
-	
+
 create_textbox("Nama Lengkap", "nama_lengkap", "text", 4, "", 'value="'.$_SESSION['namalengkap'].'" readonly');
 create_textbox("Username", "username", "text", 4, "", 'value="'.$_SESSION['username'].'" readonly');
 create_textbox("Level", "level", "text", 4, "", 'value="'.$_SESSION['leveluser'].'" readonly');

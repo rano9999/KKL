@@ -144,6 +144,6 @@ $cp = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(jk) as jml_p FRO
 
 <?php
 
-create_table(array("NIM", "Nama", "Jenis Kelamin", "Kategori", "Kelompok/Desa", "Periode"));
+create_table(array("NIM", "Nama", "Jenis Kelamin", "Kelas", "Kategori", "Kelompok/Desa", "Periode"));
 
 ?>

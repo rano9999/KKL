@@ -9,13 +9,12 @@ if($_GET['action'] == "table_data"){
    $data = array();
    $no = 1;
    while($r = mysqli_fetch_array($query)){
-      $kelas = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM kelas WHERE id_kelas='$r[id_kelas]'"));
       $row = array();
       $row[] = $no;
       $row[] = $r['nim'];
       $row[] = $r['nama'];
       $row[] = substr(md5($r['nim']),0,5);
-      $row[] = $kelas['kelas'];
+      $row[] = $r['id_kelas'];
       $row[] = $r['jk'];
       $row[] = $r['periode'];
       $row[] = create_action($r['nim']);
@@ -89,10 +88,10 @@ elseif($_GET['action'] == "import"){
     // Ambil data pada excel sesuai Kolom
     $nim = $row['B']; // Ambil data NIS
     $nama = $row['C']; // Ambil data nama
+    $kelas = $row['D']; // Ambil data telepon
     $pass = md5(substr(md5($nim),0,5));
     $jk = $row['E']; // Ambil data jenis kelamin
     $periode = $row['F']; // Ambil data jenis kelamin
-    $kelas = $_POST['kelas_import']; // Ambil data telepon
     $status = 'off';
     // Cek jika semua data tidak diisi
     if(empty($nim) && empty($nama) && empty($pass) && empty($jk))

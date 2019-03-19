@@ -53,7 +53,7 @@ if(empty($_SESSION['username']) or empty($_SESSION['password']) or $_SESSION['lo
 
 </head>
 <body>
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top" style="background-color:#191c4d">
    <div class="container">
       <?php include "menu.php"; ?>
    </div>
@@ -69,7 +69,7 @@ if(empty($_SESSION['username']) or empty($_SESSION['password']) or $_SESSION['lo
 
 <footer>
    <div class="container">
-      <p class="text-center">Copyright &copy; Dita. All right reserved.</p>
+      <p class="text-center">Copyright &copy; LPPM STMIK AMIKOM PURWOKERTO. All right reserved.</p>
    </div>
 </footer>
 

@@ -5,8 +5,8 @@ $(function(){
    var kelas = $('#id_kelas').val();
    table = $('.table').DataTable({
       "processing" : true,
-      "pageLength" : 50,
-      "paging" : false,
+      "pageLength" : 25,
+      "paging" : true,
       "ajax" : {
          "url" : "ajax/ajax_nilai.php?action=table_data&ujian=" + ujian + "&kelas=" + kelas,
          "type" : "POST"

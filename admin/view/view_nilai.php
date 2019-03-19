@@ -9,12 +9,12 @@ if(empty($_SESSION['username']) or empty($_SESSION['password']) ){
 include "../../library/function_view.php";
 include "../../library/function_form.php";
 
-create_title("check", "Hasil Ujian");
-create_button("warning", "download", "Export Nilai", "btn-add", "export_nilai()");
-create_button("warning", "download", "Export Nilai C", "btn-add", "export_nilai_c()");
-create_button("warning", "download", "Export Nilai S", "btn-add", "export_nilai_s()");
-create_button("warning", "download", "Export Nilai I", "btn-add", "export_nilai_i()");
-create_button("warning", "download", "Export Nilai D", "btn-add", "export_nilai_d()");
+create_title("check", "Data Nilai Psikotes DISC");
+// create_button("warning", "download", "Export Nilai", "btn-add", "export_nilai()");
+// create_button("warning", "download", "Export Nilai C", "btn-add", "export_nilai_c()");
+// create_button("warning", "download", "Export Nilai S", "btn-add", "export_nilai_s()");
+// create_button("warning", "download", "Export Nilai I", "btn-add", "export_nilai_i()");
+// create_button("warning", "download", "Export Nilai D", "btn-add", "export_nilai_d()");
 create_button("success", "plus-sign", "Import Data", "btn-add", "form_import()");
 
 create_table(array("NIM", "Nama Mahasiswa", "Tipe Kepribadian", "NilaiD", "NilaiI", "NilaiS", "NilaiC", "Periode"));

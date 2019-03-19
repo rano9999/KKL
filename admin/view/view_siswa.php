@@ -45,17 +45,30 @@ open_form("modal_siswa", "return save_data()");
      </div>
    </div>
    ';
-   $qkelas = mysqli_query($mysqli, "SELECT * FROM kelas");
+   $qkelas = mysqli_query($mysqli, "SELECT * FROM kelas ORDER BY kelas ASC");
    $qperiode = mysqli_query($mysqli, "SELECT * FROM periode WHERE aktif = 'Ya'");
    $list = array();
    $listP = array();
-   while($rk = mysqli_fetch_array($qkelas)){
-      $list[] = array($rk['id_kelas'], $rk['kelas']);
-   }
+   // while($rk = mysqli_fetch_array($qkelas)){
+   //    $list[] = array($rk['kelas'], $rk['kelas']);
+   // }
    while($pr = mysqli_fetch_array($qperiode)){
       $listP[] = array($pr['periode'], $pr['periode']);
    }
-   create_combobox("Kelas", "kelas", $list, 4, "", "required");
+   // create_combobox("Kelas", "kelas", $list, 4, "", "required");
+   ?>
+   <div class="form-group">
+   <label for="Kelas" class="col-sm-2 control-label"> Kelas</label>
+   <div class="col-sm-4">
+     <select class="form-control" name="kelas">
+       <option value="">Pilih Kelas</option>
+       <?php while ($rk = mysqli_fetch_array($qkelas)){ ?>
+         <option value="<?= $rk['kelas'] ?>"><?= $rk['kelas'] ?></option>
+       <?php } ?>
+     </select>
+     </div>
+   </div>
+   <?php
    create_combobox("Periode", "periode", $listP, 4, "", "required");
 
 close_form();
@@ -78,6 +91,6 @@ open_form("modal_import", "return import_data()");
    while($rk = mysqli_fetch_array($qkelas)){
       $list[] = array($rk['id_kelas'], $rk['kelas']);
    }
-   create_combobox("Kelas", "kelas_import", $list, 4, "", "required");
+   // create_combobox("Kelas", "kelas_import", $list, 4, "", "required");
 close_form("import", "Import");
 ?>
