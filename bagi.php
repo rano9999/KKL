@@ -40,9 +40,9 @@ while ($a = mysqli_fetch_array($result)) {
   }
 }
 
-$cek1 = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(id_nilai) as jml_nilai FROM nilai WHERE periode = '$periode'"));
-$cekL = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(siswa.jk) as jml_L FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.jk = 'L' AND nilai.periode = '$periode'"));
-$cekP = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(siswa.jk) as jml_P FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.jk = 'P' AND nilai.periode = '$periode'"));
+$cek1 = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nim) as jml_nilai FROM siswa WHERE periode = '$periode'"));
+$cekL = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(jk) as jml_L FROM siswa WHERE jk = 'L' AND periode = '$periode'"));
+$cekP = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(jk) as jml_P FROM siswa WHERE jk = 'P' AND periode = '$periode'"));
 
 $jml_p = $cek1['jml_nilai'];
 echo "Jumlah kelompok = " . $jml . "<br>";
@@ -53,98 +53,35 @@ echo "Jumlah peserta perempuan = " . $cekP['jml_P'] . "<br>";
 echo "Jumlah peserta perempuan tiap kelompok = " . ceil($cekP['jml_P']/$jml) . "<br>";
 echo "Jumlah kelompok setelah dibagi = " . ceil($jml_p/$jml) . "<br>";
 
-$dd = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(id) as jml FROM penampung_d WHERE periode = '$periode'"));
-$dl = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(jk) as jml_l FROM penampung_d WHERE jk = 'L' AND periode = '$periode'"));
-$dp = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(jk) as jml_p FROM penampung_d WHERE jk = 'P' AND periode = '$periode'"));
-
-$ii = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(id) as jml FROM penampung_i WHERE periode = '$periode'"));
-$il = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(jk) as jml_l FROM penampung_i WHERE jk = 'L' AND periode = '$periode'"));
-$ip = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(jk) as jml_p FROM penampung_i WHERE jk = 'P' AND periode = '$periode'"));
-
-$ss = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(id) as jml FROM penampung_s WHERE periode = '$periode'"));
-$sl = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(jk) as jml_l FROM penampung_s WHERE jk = 'L' AND periode = '$periode'"));
-$sp = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(jk) as jml_p FROM penampung_s WHERE jk = 'P' AND periode = '$periode'"));
-
-$cc = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(id) as jml FROM penampung_c WHERE periode = '$periode'"));
-$cl = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(jk) as jml_l FROM penampung_c WHERE jk = 'L' AND periode = '$periode'"));
-$cp = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(jk) as jml_p FROM penampung_c WHERE jk = 'P' AND periode = '$periode'"));
-
- ?>
- <h5>Jumlah mahasiswa dengan tipe Dominant = <?= $dd['jml'] ?> <br> Jumlah mahasiswa dengan tipe Dominant laki laki = <?= $dl['jml_l'] ?> <br> Jumlah mahasiswa dengan tipe Dominant perempuan = <?= $dp['jml_p'] ?> </h5>
- <hr>
- <h5>Jumlah mahasiswa dengan tipe Influencing = <?= $ii['jml'] ?> <br> Jumlah mahasiswa dengan tipe Influencing laki laki = <?= $il['jml_l'] ?> <br> Jumlah mahasiswa dengan tipe Influencing perempuan = <?= $ip['jml_p'] ?> </h5>
- <hr>
- <h5>Jumlah mahasiswa dengan tipe Steadiness = <?= $ss['jml'] ?> <br> Jumlah mahasiswa dengan tipe Steadiness laki laki = <?= $sl['jml_l'] ?> <br> Jumlah mahasiswa dengan tipe Steadiness perempuan = <?= $sp['jml_p'] ?> </h5>
- <hr>
- <h5>Jumlah mahasiswa dengan tipe Conscientiousness = <?= $cc['jml'] ?> <br> Jumlah mahasiswa dengan tipe Conscientiousness laki laki = <?= $cl['jml_l'] ?> <br> Jumlah mahasiswa dengan tipe Conscientiousness perempuan = <?= $cp['jml_p'] ?> </h5>
-<?php
-
-$qL = mysqli_query($mysqli, "SELECT * FROM nilai, siswa WHERE nilai.nim = siswa.nim AND nilai.periode = '$periode' ORDER BY nilai.kategori, siswa.jk ASC");
-$qLarray = array();
-$qP = mysqli_query($mysqli, "SELECT * FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.jk = 'P' AND nilai.periode = '$periode' ORDER BY nilai.kategori ASC");
-$qParray = array();
-$countL = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(id) as jmlid from kel_laki WHERE periode = '$periode'"));
-$countP = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(id) as jmlid from kel_perempuan WHERE periode = '$periode'"));
-
-$jmlLaki = $cekL['jml_L']/$jml;
-$jmlPP = $cekP['jml_P']/$jml;
-
-$md = 1;
-while ($kl = mysqli_fetch_array($qL)) {
-  if($md > $jml && $md < $countL['jmlid']){
-    $md = 1;
+$ckL = mysqli_query($mysqli, "SELECT * FROM siswa WHERE jk = 'L' AND periode = '$periode' ORDER BY kategori ASC");
+$ckP = mysqli_query($mysqli, "SELECT * FROM siswa WHERE jk = 'P' AND periode = '$periode' ORDER BY kategori ASC");
+$n = 1;
+$m = 26;
+while ($b = mysqli_fetch_array($ckL)) {
+  if ($n > $jml) {
+    $n = 1;
   }
-
-  echo $md."<br>";
-  $qcL = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM kel_laki WHERE nim = '$kl[nim]' AND periode = '$periode'"));
-  if($qcL > 0){
+  echo $b['nim']." ".$b['kategori']." ".$n."<br>";
+  $cekdulu = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM kelompok WHERE nim = '$b[nim]'"));
+  if($cekdulu > 0){
 
   }else{
-    mysqli_query($mysqli, "INSERT INTO kel_laki (nim,kategori,periode) VALUES ('$kl[nim]','$kl[kategori]','$periode')");
+  mysqli_query($mysqli, "INSERT INTO kelompok (nim, kategori, kelompok, periode, jk) VALUES ('$b[nim]','$b[kategori]','$n','$periode','$b[jk]')");
   }
-  $cekDK = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM kelompok WHERE periode = '$periode' AND nim = '$kl[nim]'"));
-  if($cekDK > 0){
+  $n++;
+}
+echo "<br>";
+while ($c = mysqli_fetch_array($ckP)) {
+  if ($m < 1) {
+    $m = 26;
+  }
+  echo $c['nim']." ".$c['kategori']." ".$m."<br>";
+  $cekdulu = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM kelompok WHERE nim = '$c[nim]'"));
+  if($cekdulu > 0){
 
   }else{
-  $result2 = mysqli_query($mysqli, "INSERT into kelompok (nim,kategori,kelompok,periode,jk) VALUES ('$kl[nim]','$kl[kategori]','$md','$periode','L')");
+    mysqli_query($mysqli, "INSERT INTO kelompok (nim, kategori, kelompok, periode, jk) VALUES ('$c[nim]','$c[kategori]','$m','$periode','$c[jk]')");
   }
-  $md++;
+  $m--;
 }
-
-echo "<br>";
-
-// $mh = 1;
-// while ($kP = mysqli_fetch_array($qP)) {
-//   if($mh > $jml && $mh < $countP['jmlid']){
-//     $mh = 1;
-//
-//   }
-//   echo $mh."<br>";
-//   $qcP = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM kel_perempuan WHERE nim = '$kP[nim]' AND periode = '$periode'"));
-//   if($qcP > 0){
-//
-//   }else{
-//     mysqli_query($mysqli, "INSERT INTO kel_perempuan (nim,kategori,periode) VALUES ('$kP[nim]','$kP[kategori]','$periode')");
-//   }
-//   $cekDK = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM kelompok WHERE periode = '$periode' AND nim = '$kP[nim]'"));
-//   if($cekDK > 0){
-//
-//   }else{
-//   $result2 = mysqli_query($mysqli, "INSERT into kelompok (nim,kategori,kelompok,periode,jk) VALUES ('$kP[nim]','$kP[kategori]','$mh','$periode','P')");
-//   }
-//   $mh++;
-// }
-
-$li = mysqli_fetch_array(mysqli_query($mysqli,"SELECT max(kelompok) as max, min(kelompok) as min FROM kelompok WHERE periode = '$periode'"));
-
-echo "<br>";
-
-for ($v=1; $v <= $li['max'] ; $v++) {
-
-  $lihat = mysqli_fetch_array(mysqli_query($mysqli,"SELECT *, count(id) as jmlKel FROM kelompok WHERE kelompok = '$v'"));
-  echo $lihat['kelompok']." = ".$lihat['jmlKel']."<br>";
-
-}
-
-
  ?>

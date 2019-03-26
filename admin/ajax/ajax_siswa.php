@@ -13,9 +13,8 @@ if($_GET['action'] == "table_data"){
       $row[] = $no;
       $row[] = $r['nim'];
       $row[] = $r['nama'];
-      $row[] = substr(md5($r['nim']),0,5);
-      $row[] = $r['id_kelas'];
       $row[] = $r['jk'];
+      $row[] = $r['kategori'];
       $row[] = $r['periode'];
       $row[] = create_action($r['nim']);
       $data[] = $row;
@@ -36,7 +35,7 @@ elseif($_GET['action'] == "form_data"){
 
 //Menambah data ke database
 elseif($_GET['action'] == "insert"){
-   $password = md5(substr(md5($_POST['nim']),0,5));
+   // $password = md5(substr(md5($_POST['nim']),0,5));
    $jml = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM siswa WHERE nim='$_POST[nim]'"));
    if($jml > 0){
       echo "nim Siswa sudah digunakan!";
@@ -44,11 +43,9 @@ elseif($_GET['action'] == "insert"){
       mysqli_query($mysqli, "INSERT INTO siswa SET
          nim = '$_POST[nim]',
          nama = '$_POST[nama]',
-         password = '$password',
-         id_kelas= '$_POST[kelas]',
          jk = '$_POST[jk]',
          periode= '$_POST[periode]',
-         status= 'off'");
+         kategori= '$_POST[kategori]'");
       echo "ok";
    }
 }
@@ -57,9 +54,9 @@ elseif($_GET['action'] == "insert"){
 elseif($_GET['action'] == "update"){
    mysqli_query($mysqli, "UPDATE siswa SET
        nama = '$_POST[nama]',
-       id_kelas= '$_POST[kelas]',
        jk = '$_POST[jk]',
-       periode= '$_POST[periode]'
+       periode= '$_POST[periode]',
+       kategori= '$_POST[kategori]'
       WHERE nim='$_POST[nim]'");
    echo "ok";
 }
@@ -82,17 +79,17 @@ elseif($_GET['action'] == "import"){
   $loadexcel = $excelreader->load('tmp/'.$nama_file_baru); // Load file excel yang tadi diupload ke folder tmp
   $sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
   // Buat query Insert
-	$sql = $pdo->prepare("INSERT INTO siswa VALUES(:nim,:nama,:password,:id_kelas,:jk,:periode,:status)");
+	$sql = $pdo->prepare("INSERT INTO siswa VALUES(:nim,:nama,:password,:jk,:periode,:kategori)");
   $numrow = 1;
   foreach($sheet as $row){
     // Ambil data pada excel sesuai Kolom
     $nim = $row['B']; // Ambil data NIS
     $nama = $row['C']; // Ambil data nama
-    $kelas = $row['D']; // Ambil data telepon
     $pass = md5(substr(md5($nim),0,5));
-    $jk = $row['E']; // Ambil data jenis kelamin
+    $jk = $row['D']; // Ambil data jenis kelamin
+    $kategori = $row['E']; // Ambil data jenis kelamin
     $periode = $row['F']; // Ambil data jenis kelamin
-    $status = 'off';
+
     // Cek jika semua data tidak diisi
     if(empty($nim) && empty($nama) && empty($pass) && empty($jk))
       continue; // Lewat data pada baris ini (masuk ke looping selanjutnya / baris selanjutnya)
@@ -105,11 +102,9 @@ elseif($_GET['action'] == "import"){
       $sql->bindParam(':nim', $nim);
       $sql->bindParam(':nama', $nama);
       $sql->bindParam(':password', $pass);
-      $sql->bindParam(':id_kelas', $kelas);
       $sql->bindParam(':jk', $jk);
       $sql->bindParam(':periode', $periode);
-      $sql->bindParam(':status', $status);
-
+      $sql->bindParam(':kategori', $kategori);
       $sql->execute(); // Eksekusi query insert
     }
     $numrow++; // Tambah 1 setiap kali looping

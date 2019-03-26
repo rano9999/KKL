@@ -38,7 +38,7 @@ foreach($header as $h){
 
 //Fungsi untuk membuat tombol aksi pada tabel
 function create_action($id, $edit=true, $delete=true){
-   $view = "";
+   $view = " ";
    if($edit) $view .= ' <a class="btn btn-primary btn-edit" onclick="form_edit('.$id.')"><i class="glyphicon glyphicon-pencil"></i></a>';
    if($delete)	$view .= ' <a class="btn btn-danger btn-delete" onclick="delete_data('.$id.')"><i class="glyphicon glyphicon-trash"></i></a>';
    return $view;

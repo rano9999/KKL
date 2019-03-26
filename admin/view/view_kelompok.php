@@ -15,16 +15,16 @@ $cekP = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM periode WHERE ak
 create_title("check", "Kelompok KKL Periode ".$cekP['periode']);
 create_button("info", "download", "Export Data Kelompok", "btn-add", "export_kelompok()");
 create_button("warning", "download", "Generate Kelompok", "btn-add", "Generate_kelompok()");
-create_button("primary", "user", "Analisis Kelompok", "btn-add", "analisis_kelompok()");
+// create_button("primary", "user", "Analisis Kelompok", "btn-add", "analisis_kelompok()");
 
 
 $cek = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM periode WHERE aktif = 'Ya'"));
 $periode = $cek['periode'];
 $jml = $cek['jml_kel'];
 
-$cek1 = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(id_nilai) as jml_nilai FROM nilai WHERE periode = '$periode'"));
-$cekL = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(siswa.jk) as jml_L FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.jk = 'L' AND nilai.periode = '$periode'"));
-$cekP = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(siswa.jk) as jml_P FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.jk = 'P' AND nilai.periode = '$periode'"));
+$cek1 = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nim) as jml_nilai FROM siswa WHERE periode = '$periode'"));
+$cekL = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(siswa.jk) as jml_L FROM siswa WHERE jk = 'L' AND periode = '$periode'"));
+$cekP = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(siswa.jk) as jml_P FROM siswa WHERE jk = 'P' AND periode = '$periode'"));
 
 $jml_p = $cek1['jml_nilai'];
 
@@ -144,6 +144,6 @@ $cp = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, count(jk) as jml_p FRO
 
 <?php
 
-create_table(array("NIM", "Nama", "Jenis Kelamin", "Kelas", "Kategori", "Kelompok/Desa", "Periode"));
+create_table(array("NIM", "Nama", "Jenis Kelamin", "Kategori", "Kelompok/Desa", "Periode"));
 
 ?>

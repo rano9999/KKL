@@ -17,7 +17,7 @@ if($_GET['action'] == "table_data"){
       $row[] = $r['nim'];
       $row[] = $siswa['nama'];
       $row[] = $siswa['jk'];
-      $row[] = $siswa['id_kelas'];
+      // $row[] = $siswa['id_kelas'];
       $row[] = $r['kategori'];
       $row[] = "Kelompok/Desa - " . $r['kelompok'];
   	  $row[] = $r['periode'];

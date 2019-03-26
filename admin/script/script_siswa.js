@@ -31,11 +31,10 @@ function form_edit(id){
       success : function(data){
          $('#modal_siswa').modal('show');
          $('.modal-title').text('Edit Mahasiswa');
-
          $('#nim').val(data.nim).attr('readonly',true);
          $('#nama').val(data.nama);
-         $('#kelas').val(data.kelas);
          $('#periode').val(data.periode);
+         $('#kategori').val(data.kategori);
          $('#jk').val(data.jk);
       },
       error : function(){
@@ -87,19 +86,6 @@ function delete_data(id){
    }
 }
 
-//Ketika tombol Cetak Kartu diklik
-function form_print(){
-   $('#modal_print').modal('show');
-   $('.modal-title').text('Cetak Kartu Ujian');
-   $('#modal_print form')[0].reset();
-}
-
-//Ketika tombol Cetak pada modal diklik
-function print_data(){
-   $('#modal_print').modal('hide');
-window.open("export/pdf_kartu.php?kelas="+$('#kelas_print').val(), "Cetak Kartu Ujian", "height=650, width=1024, left=150, scrollbars=yes");
-   return false;
-}
 
 //Ketika tombol import diklik
 function form_import(){
