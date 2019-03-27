@@ -7,7 +7,8 @@ $cek = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM periode WHERE akt
 
 //Menampilkan data ke tabel
 if($_GET['action'] == "table_data"){
-   $query = mysqli_query($mysqli, "SELECT * FROM `kelompok` WHERE periode = '$cek[periode]' ORDER BY kelompok.kelompok, kelompok.periode, kelompok.kategori ASC");
+   $query = mysqli_query($mysqli, "SELECT * FROM `kelompok` WHERE periode = '$cek[periode]'
+     ORDER BY kelompok.kelompok, kelompok.periode, kelompok.kategori ASC");
    $data = array();
    $no = 1;
    while($r = mysqli_fetch_array($query)){
@@ -17,17 +18,12 @@ if($_GET['action'] == "table_data"){
       $row[] = $r['nim'];
       $row[] = $siswa['nama'];
       $row[] = $siswa['jk'];
-      // $row[] = $siswa['id_kelas'];
       $row[] = $r['kategori'];
       $row[] = "Kelompok/Desa - " . $r['kelompok'];
   	  $row[] = $r['periode'];
       $data[] = $row;
-      // $no++;
    }
-
    $output = array("data" => $data);
    echo json_encode($output);
 }
-
-
 ?>
