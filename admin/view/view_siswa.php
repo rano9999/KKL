@@ -45,7 +45,7 @@ open_form("modal_siswa", "return save_data()");
      </div>
    </div>
    ';
-   $qperiode = mysqli_query($mysqli, "SELECT * FROM periode WHERE aktif = 'Ya'");
+   $qperiode = mysqli_query($mysqli, "SELECT * FROM periode");
    $listP = array();
    while($pr = mysqli_fetch_array($qperiode)){
       $listP[] = array($pr['periode'], $pr['periode']);
