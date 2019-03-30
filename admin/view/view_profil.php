@@ -1,10 +1,6 @@
 <script type="text/javascript" src="script/script_profil.js"> </script>
 
 <?php
-session_start();
-if(empty($_SESSION['username']) or empty($_SESSION['password'])){
-	header('location: ../login.php');
-}
 
 include "../../library/function_view.php";
 include "../../library/function_form.php";
