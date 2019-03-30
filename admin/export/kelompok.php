@@ -47,7 +47,7 @@ $style_row = array(
 );
 
 $excel->setActiveSheetIndex(0)->setCellValue('A1', "DATA KELOMPOK KKL STMIK AMIKOM PURWOKERTO PERIODE ".$periode['periode']);
-$excel->getActiveSheet()->mergeCells('A1:H1'); // Set Merge Cell pada kolom A1 sampai F1
+$excel->getActiveSheet()->mergeCells('A1:G1'); // Set Merge Cell pada kolom A1 sampai F1
 $excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE); // Set bold kolom A1
 $excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(15); // Set font size 15 untuk kolom A1
 $excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER); // Set text center untuk kolom A1
@@ -58,7 +58,8 @@ $excel->setActiveSheetIndex(0)->setCellValue('B3', "NIM"); // Set kolom B3 denga
 $excel->setActiveSheetIndex(0)->setCellValue('C3', "NAMA"); // Set kolom C3 dengan tulisan "NAMA"
 $excel->setActiveSheetIndex(0)->setCellValue('D3', "JK"); // Set kolom C3 dengan tulisan "NAMA"
 $excel->setActiveSheetIndex(0)->setCellValue('E3', "KATEGORI"); // Set kolom E3 dengan tulisan "NILAID"
-$excel->setActiveSheetIndex(0)->setCellValue('F3', "KELOMPOK"); // Set kolom F3 dengan tulisan "NILAI1"
+$excel->setActiveSheetIndex(0)->setCellValue('F3', "KELAS"); // Set kolom E3 dengan tulisan "NILAID"
+$excel->setActiveSheetIndex(0)->setCellValue('G3', "KELOMPOK"); // Set kolom F3 dengan tulisan "NILAI1"
 
 // Apply style header yang telah kita buat tadi ke masing-masing kolom header
 $excel->getActiveSheet()->getStyle('A3')->applyFromArray($style_col);
@@ -67,6 +68,7 @@ $excel->getActiveSheet()->getStyle('C3')->applyFromArray($style_col);
 $excel->getActiveSheet()->getStyle('D3')->applyFromArray($style_col);
 $excel->getActiveSheet()->getStyle('E3')->applyFromArray($style_col);
 $excel->getActiveSheet()->getStyle('F3')->applyFromArray($style_col);
+$excel->getActiveSheet()->getStyle('G3')->applyFromArray($style_col);
 
 // Set height baris ke 1, 2 dan 3
 $excel->getActiveSheet()->getRowDimension('1')->setRowHeight(20);
@@ -87,7 +89,8 @@ while($data = mysqli_fetch_array($sql)){ // Ambil semua data dari hasil eksekusi
 	$excel->setActiveSheetIndex(0)->setCellValue('C'.$numrow, $data['nama']);
 	$excel->setActiveSheetIndex(0)->setCellValue('D'.$numrow, $data['jk']);
 	$excel->setActiveSheetIndex(0)->setCellValue('E'.$numrow, $data['kategori']);
-	$excel->setActiveSheetIndex(0)->setCellValue('F'.$numrow, "Kelompok - ".$data['kelompok']);
+	$excel->setActiveSheetIndex(0)->setCellValue('F'.$numrow, $data['id_kelas']);
+	$excel->setActiveSheetIndex(0)->setCellValue('G'.$numrow, "Kelompok - ".$data['kelompok']);
 
 
 	// Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
@@ -97,6 +100,7 @@ while($data = mysqli_fetch_array($sql)){ // Ambil semua data dari hasil eksekusi
 	$excel->getActiveSheet()->getStyle('D'.$numrow)->applyFromArray($style_row);
 	$excel->getActiveSheet()->getStyle('E'.$numrow)->applyFromArray($style_row);
 	$excel->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_row);
+	$excel->getActiveSheet()->getStyle('G'.$numrow)->applyFromArray($style_row);
 
 	$excel->getActiveSheet()->getRowDimension($numrow)->setRowHeight(20);
 
@@ -108,9 +112,10 @@ while($data = mysqli_fetch_array($sql)){ // Ambil semua data dari hasil eksekusi
 $excel->getActiveSheet()->getColumnDimension('A')->setWidth(5); // Set width kolom A
 $excel->getActiveSheet()->getColumnDimension('B')->setWidth(15); // Set width kolom B
 $excel->getActiveSheet()->getColumnDimension('C')->setWidth(25); // Set width kolom C
-$excel->getActiveSheet()->getColumnDimension('D')->setWidth(20); // Set width kolom D
-$excel->getActiveSheet()->getColumnDimension('E')->setWidth(15); // Set width kolom E
-$excel->getActiveSheet()->getColumnDimension('F')->setWidth(30); // Set width kolom F
+$excel->getActiveSheet()->getColumnDimension('D')->setWidth(10); // Set width kolom D
+$excel->getActiveSheet()->getColumnDimension('E')->setWidth(25); // Set width kolom E
+$excel->getActiveSheet()->getColumnDimension('G')->setWidth(20); // Set width kolom F
+$excel->getActiveSheet()->getColumnDimension('F')->setWidth(20); // Set width kolom F
 
 // Set orientasi kertas jadi LANDSCAPE
 $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
@@ -118,7 +123,7 @@ $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_Page
 // Set judul file excel nya
 $excel->getActiveSheet(0)->setTitle("DATA KELOMPOK KKL");
 $excel->setActiveSheetIndex(0);
-
+$kk = $periode['periode'];
 // Proses file excel
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 header('Content-Disposition: attachment; filename="Data Kelompok.xlsx"'); // Set nama file excel nya

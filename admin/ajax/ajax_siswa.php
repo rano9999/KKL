@@ -9,24 +9,20 @@ if($_GET['action'] == "table_data"){
    $data = array();
    $no = 1;
    while($r = mysqli_fetch_array($query)){
-      $kelas = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM kelas WHERE id_kelas='$r[id_kelas]'"));
       $row = array();
       $row[] = $no;
       $row[] = $r['nim'];
       $row[] = $r['nama'];
-      $row[] = substr(md5($r['nim']),0,5);
-      $row[] = $kelas['kelas'];
       $row[] = $r['jk'];
+      $row[] = $r['kategori'];
       $row[] = $r['periode'];
       $row[] = create_action($r['nim']);
       $data[] = $row;
       $no++;
    }
-
    $output = array("data" => $data);
    echo json_encode($output);
 }
-
 
 //Menampilkan data ke form edit
 elseif($_GET['action'] == "form_data"){
@@ -37,7 +33,7 @@ elseif($_GET['action'] == "form_data"){
 
 //Menambah data ke database
 elseif($_GET['action'] == "insert"){
-   $password = md5(substr(md5($_POST['nim']),0,5));
+   // $password = md5(substr(md5($_POST['nim']),0,5));
    $jml = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM siswa WHERE nim='$_POST[nim]'"));
    if($jml > 0){
       echo "nim Siswa sudah digunakan!";
@@ -45,11 +41,9 @@ elseif($_GET['action'] == "insert"){
       mysqli_query($mysqli, "INSERT INTO siswa SET
          nim = '$_POST[nim]',
          nama = '$_POST[nama]',
-         password = '$password',
-         id_kelas= '$_POST[kelas]',
          jk = '$_POST[jk]',
          periode= '$_POST[periode]',
-         status= 'off'");
+         kategori= '$_POST[kategori]'");
       echo "ok";
    }
 }
@@ -58,9 +52,9 @@ elseif($_GET['action'] == "insert"){
 elseif($_GET['action'] == "update"){
    mysqli_query($mysqli, "UPDATE siswa SET
        nama = '$_POST[nama]',
-       id_kelas= '$_POST[kelas]',
        jk = '$_POST[jk]',
-       periode= '$_POST[periode]'
+       periode= '$_POST[periode]',
+       kategori= '$_POST[kategori]'
       WHERE nim='$_POST[nim]'");
    echo "ok";
 }
@@ -80,78 +74,33 @@ elseif($_GET['action'] == "import"){
   $loadexcel = move_uploaded_file($_FILES['file']['tmp_name'], "$path/$nama_file_baru");
 
   $excelreader = new PHPExcel_Reader_Excel2007();
-  $loadexcel = $excelreader->load('tmp/'.$nama_file_baru); // Load file excel yang tadi diupload ke folder tmp
+  $loadexcel = $excelreader->load('tmp/'.$nama_file_baru);
   $sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
   // Buat query Insert
-	$sql = $pdo->prepare("INSERT INTO siswa VALUES(:nim,:nama,:password,:id_kelas,:jk,:periode,:status)");
+	$sql = $pdo->prepare("INSERT INTO siswa VALUES(:nim,:nama,:jk,:periode,:kategori)");
   $numrow = 1;
   foreach($sheet as $row){
     // Ambil data pada excel sesuai Kolom
-    $nim = $row['B']; // Ambil data NIS
-    $nama = $row['C']; // Ambil data nama
-    $pass = md5(substr(md5($nim),0,5));
-    $jk = $row['E']; // Ambil data jenis kelamin
-    $periode = $row['F']; // Ambil data jenis kelamin
-    $kelas = $_POST['kelas_import']; // Ambil data telepon
-    $status = 'off';
-    // Cek jika semua data tidak diisi
-    if(empty($nim) && empty($nama) && empty($pass) && empty($jk))
-      continue; // Lewat data pada baris ini (masuk ke looping selanjutnya / baris selanjutnya)
+    $nim = $row['B'];
+    $nama = $row['C'];
+    $jk = $row['D'];
+    $kategori = $row['E'];
+    $periode = $row['F'];
 
-    // Cek $numrow apakah lebih dari 1
-    // Artinya karena baris pertama adalah nama-nama kolom
-    // Jadi dilewat saja, tidak usah diimport
+    if(empty($nim) && empty($nama) && empty($pass) && empty($jk))
+      continue;
+
     if($numrow > 1){
       // Proses simpan ke Database
       $sql->bindParam(':nim', $nim);
       $sql->bindParam(':nama', $nama);
-      $sql->bindParam(':password', $pass);
-      $sql->bindParam(':id_kelas', $kelas);
       $sql->bindParam(':jk', $jk);
       $sql->bindParam(':periode', $periode);
-      $sql->bindParam(':status', $status);
-
-      $sql->execute(); // Eksekusi query insert
+      $sql->bindParam(':kategori', $kategori);
+      $sql->execute();
     }
-    $numrow++; // Tambah 1 setiap kali looping
+    $numrow++;
   }
   echo "ok";
 }
-
-// elseif($_GET['action'] == "import"){
-//    include "../../assets/excel_reader/excel_reader2.php";
-//    $filename = strtolower($_FILES['file']['name']);
-//    $extensi  = substr($filename,-4);
-//
-//    if($extensi != ".xlsx"){
-//       echo "File yang di-upload tidak berformat .xls!'";
-//    }else{
-//       $path = "../tmp";
-//       move_uploaded_file($_FILES['file']['tmp_name'], "$path/$filename");
-//
-//       $file = "../tmp/$filename";
-//
-//       $data = new Spreadsheet_Excel_Reader();
-//       $data->read($file);
-//       $jdata = $data->rowcount($sheet_index=0);
-//
-//       for($i=2; $i<=$jdata; $i++){
-//          $nim = addslashes(str_replace(" ", "", $data->val($i,2)));
-//          $nama = addslashes($data->val($i,3));
-//          $jk = addslashes($data->val($i,5));
-//          $periode = addslashes($data->val($i,6));
-//
-//          $cek = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM siswa WHERE nim='$nim'"));
-//          if($cek > 0){
-//             mysqli_query($mysqli, "UPDATE siswa SET nama='$nama', id_kelas='$_POST[kelas_import]', jk = '$jk', periode = '$periode' WHERE  nim='$nim'");
-//          }else{
-//             $pass = md5(substr(md5($nim),0,5));
-//             mysqli_query($mysqli, "INSERT INTO siswa SET nim='$nim', nama='$nama', id_kelas='$_POST[kelas_import]', password='$pass', jk = '$jk', periode = '$periode', status='off'");
-//          }
-//       }
-//
-//       unlink($file);
-//       echo "ok";
-//    }
-// }
 ?>

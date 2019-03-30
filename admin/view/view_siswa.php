@@ -1,11 +1,6 @@
 <script type="text/javascript" src="script/script_siswa.js"> </script>
 
 <?php
-session_start();
-if(empty($_SESSION['username']) or empty($_SESSION['password']) or $_SESSION['leveluser']!="admin"){
-   header('location: ../login.php');
-}
-
 
 //Include library yang dibutuhkan
 include "../../library/config.php";
@@ -28,7 +23,7 @@ create_button("success", "plus-sign", "Import Data", "btn-add", "form_import()")
   </div>
   ';
 //Membuat header dan footer tabel
-create_table(array("NIM", "Nama Mahasiswa", "Password", "Kelas", "Jenis Kelamin", "Periode", "Aksi"));
+create_table(array("NIM", "Nama Mahasiswa", "Jenis Kelamin", "Kategori DISC", "Periode", "Aksi"));
 
 //Membuat form tambah dan edit data
 open_form("modal_siswa", "return save_data()");
@@ -45,39 +40,34 @@ open_form("modal_siswa", "return save_data()");
      </div>
    </div>
    ';
-   $qkelas = mysqli_query($mysqli, "SELECT * FROM kelas");
-   $qperiode = mysqli_query($mysqli, "SELECT * FROM periode WHERE aktif = 'Ya'");
-   $list = array();
+   $qperiode = mysqli_query($mysqli, "SELECT * FROM periode");
    $listP = array();
-   while($rk = mysqli_fetch_array($qkelas)){
-      $list[] = array($rk['id_kelas'], $rk['kelas']);
-   }
    while($pr = mysqli_fetch_array($qperiode)){
       $listP[] = array($pr['periode'], $pr['periode']);
    }
-   create_combobox("Kelas", "kelas", $list, 4, "", "required");
+   ?>
+   <?php
+   echo '
+   <div class="form-group">
+   <label class="col-sm-2 control-label">Kategori DISC</label>
+   <div class="col-sm-4">
+     <select class="form-control" name="kategori" id="kategori">
+       <option value="Dominant">Dominant</option>
+       <option value="Influencing">Influencing</option>
+       <option value="Steadiness">Steadiness</option>
+       <option value="Conscientiousness">Conscientiousness</option>
+     </select>
+     </div>
+   </div>
+   ';
    create_combobox("Periode", "periode", $listP, 4, "", "required");
 
 close_form();
-
-//Membuat form cetak kartu
-open_form("modal_print", "return print_data()");
-   $qkelas = mysqli_query($mysqli, "SELECT * FROM kelas");
-   $list = array();
-   while($rk = mysqli_fetch_array($qkelas)){
-      $list[] = array($rk['id_kelas'], $rk['kelas']);
-   }
-   create_combobox("Kelas", "kelas_print", $list, 4, "", "required");
-close_form("print", "Print");
 
 //Membuat form import
 open_form("modal_import", "return import_data()");
    create_textbox("Pilih File .xlsx", "file", "file", 6, "", "required");
    $qkelas = mysqli_query($mysqli, "SELECT * FROM kelas");
    $list = array();
-   while($rk = mysqli_fetch_array($qkelas)){
-      $list[] = array($rk['id_kelas'], $rk['kelas']);
-   }
-   create_combobox("Kelas", "kelas_import", $list, 4, "", "required");
 close_form("import", "Import");
 ?>

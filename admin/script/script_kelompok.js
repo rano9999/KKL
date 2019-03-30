@@ -13,31 +13,15 @@ $(function(){
    });
 });
 
-function analisis_kelompok(){
-  $("#loading").show(); // Tampilkan loadingnya
-    $.ajax({
-       url : "ajax/analisis_kelompok.php",
-       type : "POST",
-       success : function(data){
-         $("#loading").hide(); // Sembunyikan loadingnya
-           $( "#display_info" ).load( "view/view_kelompok.php #display_info" );
-       },
-       error : function(){
-          alert("Tidak dapat menghapus data!");
-       }
-    });
-}
-
 function Generate_kelompok(){
   $("#loading").show(); // Tampilkan loadingnya
     $.ajax({
        url : "ajax/bagi_kelompok.php",
        type : "POST",
        success : function(data){
-         $("#loading").hide(); // Sembunyikan loadingnya
-           // $( "#display_info" ).load( "view/view_kelompok.php #display_info" );
+           $("#loading").hide(); // Sembunyikan loadingnya
+           $( "#display_info" ).load( "view/view_kelompok.php #display_info" );
            table.ajax.reload();
-
        },
        error : function(){
           alert("Tidak dapat menghapus data!");
