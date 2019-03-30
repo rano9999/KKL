@@ -1,7 +1,7 @@
 <script type="text/javascript" src="script/script_siswa.js"> </script>
 
 <?php
-session_start();
+// session_start();
 if(empty($_SESSION['username']) or empty($_SESSION['password']) or $_SESSION['leveluser']!="admin"){
    header('location: ../login.php');
 }
