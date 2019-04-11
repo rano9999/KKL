@@ -77,7 +77,7 @@ elseif($_GET['action'] == "import"){
   $loadexcel = $excelreader->load('tmp/'.$nama_file_baru);
   $sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
   // Buat query Insert
-	$sql = $pdo->prepare("INSERT INTO siswa VALUES(:nim,:nama,:jk,:periode,:kategori)");
+	$sql = $pdo->prepare("INSERT INTO siswa VALUES(:nim,:nama,:jk,:periode,:kategori,:tipe)");
   $numrow = 1;
   foreach($sheet as $row){
     // Ambil data pada excel sesuai Kolom
@@ -86,6 +86,16 @@ elseif($_GET['action'] == "import"){
     $jk = $row['D'];
     $kategori = $row['E'];
     $periode = $row['F'];
+
+    if( $kategori == 'Dominant'){
+       $tipe = 1;
+    }elseif( $kategori == 'Influencing'){
+       $tipe = 2;
+    }elseif( $kategori == 'Steadiness'){
+       $tipe = 3;
+    }elseif ( $kategori == 'Compliance'){
+       $tipe = 4;
+    }
 
     if(empty($nim) && empty($nama) && empty($pass) && empty($jk))
       continue;
@@ -97,10 +107,11 @@ elseif($_GET['action'] == "import"){
       $sql->bindParam(':jk', $jk);
       $sql->bindParam(':periode', $periode);
       $sql->bindParam(':kategori', $kategori);
+      $sql->bindParam(':tipe', $tipe);
       $sql->execute();
     }
     $numrow++;
   }
-  echo "ok";
+  echo "ok"; 
 }
 ?>

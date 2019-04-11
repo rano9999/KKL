@@ -36,9 +36,9 @@ $ss = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, COUNT(nim) as jml FROM
 $sl = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, COUNT(nim) as jml_l FROM `siswa` WHERE periode = '$periode' AND kategori = 'Steadiness' AND jk = 'L'"));
 $sp = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, COUNT(nim) as jml_p FROM `siswa` WHERE periode = '$periode' AND kategori = 'Steadiness' AND jk = 'P'"));
 
-$cc = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, COUNT(nim) as jml FROM `siswa` WHERE periode = '$periode' AND kategori = 'Conscientiousness'"));
-$cl = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, COUNT(nim) as jml_l FROM `siswa` WHERE periode = '$periode' AND kategori = 'Conscientiousness' AND jk = 'L'"));
-$cp = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, COUNT(nim) as jml_p FROM `siswa` WHERE periode = '$periode' AND kategori = 'Conscientiousness' AND jk = 'P'"));
+$cc = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, COUNT(nim) as jml FROM `siswa` WHERE periode = '$periode' AND kategori = 'Compliance'"));
+$cl = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, COUNT(nim) as jml_l FROM `siswa` WHERE periode = '$periode' AND kategori = 'Compliance' AND jk = 'L'"));
+$cp = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, COUNT(nim) as jml_p FROM `siswa` WHERE periode = '$periode' AND kategori = 'Compliance' AND jk = 'P'"));
 
 ?>
 
@@ -142,4 +142,4 @@ $cp = mysqli_fetch_array(mysqli_query($mysqli, "SELECT *, COUNT(nim) as jml_p FR
 
 create_table(array("NIM", "Nama", "Jenis Kelamin", "Kategori", "Kelompok/Desa", "Periode"));
 
-?> 
+?>

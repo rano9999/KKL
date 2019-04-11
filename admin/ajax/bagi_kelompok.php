@@ -37,10 +37,10 @@ while ($a = mysqli_fetch_array($result)) {
   }
 }
 
-$ckL = mysqli_query($mysqli, "SELECT * FROM siswa WHERE jk = 'L' AND periode = '$periode' ORDER BY kategori ASC");
-$ckP = mysqli_query($mysqli, "SELECT * FROM siswa WHERE jk = 'P' AND periode = '$periode' ORDER BY kategori ASC");
+$ckL = mysqli_query($mysqli, "SELECT * FROM siswa WHERE jk = 'L' AND periode = '$periode' ORDER BY tipe ASC");
+$ckP = mysqli_query($mysqli, "SELECT * FROM siswa WHERE jk = 'P' AND periode = '$periode' ORDER BY tipe ASC");
 $n = 1;
-$m = 26;
+$m = $jml;
 while ($b = mysqli_fetch_array($ckL)) {
   if ($n > $jml) {
     $n = 1;
@@ -57,7 +57,7 @@ while ($b = mysqli_fetch_array($ckL)) {
 echo "<br>";
 while ($c = mysqli_fetch_array($ckP)) {
   if ($m < 1) {
-    $m = 26;
+    $m = $jml;
   }
   echo $c['nim']." ".$c['kategori']." ".$m."<br>";
   $cekdulu = mysqli_num_rows(mysqli_query($mysqli, "SELECT * FROM kelompok WHERE nim = '$c[nim]'"));

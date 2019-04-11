@@ -7,17 +7,16 @@ $cek = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM periode WHERE akt
 
 //Menampilkan data ke tabel
 if($_GET['action'] == "table_data"){
-   $query = mysqli_query($mysqli, "SELECT * FROM `kelompok` WHERE periode = '$cek[periode]'
-     ORDER BY kelompok.kelompok, kelompok.periode, kelompok.kategori ASC");
+   $query = mysqli_query($mysqli, "SELECT * FROM `kelompok`,`siswa` WHERE kelompok.nim = siswa.nim AND kelompok.periode = '$cek[periode]'
+     ORDER BY kelompok.kelompok, kelompok.periode, siswa.jk ASC");
    $data = array();
    $no = 1;
    while($r = mysqli_fetch_array($query)){
-      $siswa = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM siswa WHERE nim='$r[nim]'"));
       $row = array();
       $row[] = $no++;
       $row[] = $r['nim'];
-      $row[] = $siswa['nama'];
-      $row[] = $siswa['jk'];
+      $row[] = $r['nama'];
+      $row[] = $r['jk'];
       $row[] = $r['kategori'];
       $row[] = "Kelompok/Desa - " . $r['kelompok'];
   	  $row[] = $r['periode'];
