@@ -63,7 +63,7 @@ if (empty($_SESSION['username']) or empty($_SESSION['password']) or $_SESSION['l
     </nav>
 
     <section>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-12" id="content"></div>
             </div>

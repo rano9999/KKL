@@ -1,4 +1,6 @@
 var save_method, table;
+$("#loading").hide();
+
 //Menerapkan plugin datatables
 $(function(){
    table = $('.table').DataTable({

@@ -13,6 +13,10 @@ if($_GET['action'] == "table_data"){
       $row[] = $no;
       $row[] = $r['periode'];
       $row[] = $r['jml_kel'];
+      $row[] = $r['jml_D'];
+      $row[] = $r['jml_I'];
+      $row[] = $r['jml_S'];
+      $row[] = $r['jml_C'];
       $row[] = $r['aktif'];
       $row[] = create_action($r['id']);
       $data[] = $row;
@@ -40,6 +44,10 @@ elseif($_GET['action'] == "insert"){
       mysqli_query($mysqli, "INSERT INTO periode SET
          periode = '$_POST[periode]',
          jml_kel = '$_POST[jml_kel]',
+         jml_D = '$_POST[jml_D]',
+         jml_I = '$_POST[jml_I]',
+         jml_S = '$_POST[jml_S]',
+         jml_C = '$_POST[jml_C]',
          aktif= 'Tidak'");
       echo "ok";
    }
@@ -50,6 +58,10 @@ elseif($_GET['action'] == "update"){
     mysqli_query($mysqli, "UPDATE periode SET aktif = 'Tidak'");
     mysqli_query($mysqli, "UPDATE periode SET
       periode = '$_POST[periode]',
+      jml_D = '$_POST[jml_D]',
+      jml_I = '$_POST[jml_I]',
+      jml_S = '$_POST[jml_S]',
+      jml_C = '$_POST[jml_C]',
       aktif = '$_POST[aktif]',
       jml_kel = '$_POST[jml_kel]'
       WHERE id ='$_POST[id_tahun]'");

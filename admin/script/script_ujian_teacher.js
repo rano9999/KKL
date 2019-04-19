@@ -1,4 +1,5 @@
 var table;
+$("#loading").hide();
 
 $(function(){
    table = $('.table').DataTable({

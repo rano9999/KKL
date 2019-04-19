@@ -1,4 +1,5 @@
 var save_method, table;
+$("#loading").hide();
 
 //Menampilkan data ke tabel dengan plugin dataTable
 $(function(){
@@ -10,6 +11,13 @@ $(function(){
       }
    });
 });
+
+//Ketika tombol Cetak Kartu diklik
+function print_data() {
+   $('#modal_print').modal('hide');
+   window.open("export/pdf_kartu.php", "Cetak Kartu Ujian", "height=650, width=1024, left=150, scrollbars=yes");
+   return false;
+}
 
 //Ketika tombol tambah diklik
 function form_add(){

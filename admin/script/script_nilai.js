@@ -1,4 +1,6 @@
 var table;
+$("#loading").hide();
+// $("#panel").hide();
 
 $(function(){
    var ujian = $('#id_ujian').val();
@@ -13,6 +15,103 @@ $(function(){
       }
    });
 });
+
+function pilih() {
+   $("#loading").show(); // Tampilkan loadingnya
+   $.ajax({
+      url: "ajax/pilih.php",
+      type: "POST",
+      success: function (data) {
+         $("#loading").hide(); // Sembunyikan loadingnya
+         $("#display_info").load("view/view_nilai.php #display_info");
+         $("#cek").load("view/view_nilai.php #cek");
+         table.ajax.reload();
+      },
+      error: function () {
+         alert("Tidak dapat menghapus data!");
+      }
+   });
+}
+
+function cek() {
+   $("#loading").show(); // Tampilkan loadingnya
+   $.ajax({
+      url: "ajax/cek.php",
+      type: "POST",
+      success: function (data) {
+         $("#loading").hide(); // Sembunyikan loadingnya
+         $("#display_info").load("view/view_nilai.php #display_info");
+         table.ajax.reload();
+      },
+      error: function () {
+         alert("Tidak dapat menghapus data!");
+      }
+   });
+}
+
+function cekUlangD() {
+   $("#loading").show(); // Tampilkan loadingnya
+   $.ajax({
+      url: "ajax/cek_ulangD.php",
+      type: "POST",
+      success: function (data) {
+         $("#loading").hide(); // Sembunyikan loadingnya
+         $("#display_info").load("view/view_nilai.php #display_info");
+         table.ajax.reload();
+      },
+      error: function () {
+         alert("Tidak dapat menghapus data!");
+      }
+   });
+}
+
+function cekUlangI() {
+   $("#loading").show(); // Tampilkan loadingnya
+   $.ajax({
+      url: "ajax/cek_ulangI.php",
+      type: "POST",
+      success: function (data) {
+         $("#loading").hide(); // Sembunyikan loadingnya
+         $("#display_info").load("view/view_nilai.php #display_info");
+         table.ajax.reload();
+      },
+      error: function () {
+         alert("Tidak dapat menghapus data!");
+      }
+   });
+}
+
+function cekUlangS() {
+   $("#loading").show(); // Tampilkan loadingnya
+   $.ajax({
+      url: "ajax/cek_ulangS.php",
+      type: "POST",
+      success: function (data) {
+         $("#loading").hide(); // Sembunyikan loadingnya
+         $("#display_info").load("view/view_nilai.php #display_info");
+         table.ajax.reload();
+      },
+      error: function () {
+         alert("Tidak dapat menghapus data!");
+      }
+   });
+}
+
+function cekUlangC() {
+   $("#loading").show(); // Tampilkan loadingnya
+   $.ajax({
+      url: "ajax/cek_ulangC.php",
+      type: "POST",
+      success: function (data) {
+         $("#loading").hide(); // Sembunyikan loadingnya
+         $("#display_info").load("view/view_nilai.php #display_info");
+         table.ajax.reload();
+      },
+      error: function () {
+         alert("Tidak dapat menghapus data!");
+      }
+   });
+}
 
 function export_nilai(){
    ujian = $('#id_ujian').val();

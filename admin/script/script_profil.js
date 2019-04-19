@@ -1,3 +1,5 @@
+$("#loading").hide();
+
 $(function(){	
    $('#form-profil').submit(function(){
       if($('#baru').val() != $('#ulang').val()){

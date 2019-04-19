@@ -61,6 +61,7 @@ $excel->setActiveSheetIndex(0)->setCellValue('E3', "Nilai D"); // Set kolom E3 d
 $excel->setActiveSheetIndex(0)->setCellValue('F3', "Nilai I"); // Set kolom F3 dengan tulisan "NILAI1"
 $excel->setActiveSheetIndex(0)->setCellValue('G3', "Nilai S"); // Set kolom E3 dengan tulisan "NILAIS"
 $excel->setActiveSheetIndex(0)->setCellValue('H3', "Nilai C"); // Set kolom F3 dengan tulisan "NILAIC"
+$excel->setActiveSheetIndex(0)->setCellValue('I3', "STATUS"); // Set kolom F3 dengan tulisan "NILAIC"
 
 // Apply style header yang telah kita buat tadi ke masing-masing kolom header
 $excel->getActiveSheet()->getStyle('A3')->applyFromArray($style_col);
@@ -71,6 +72,7 @@ $excel->getActiveSheet()->getStyle('E3')->applyFromArray($style_col);
 $excel->getActiveSheet()->getStyle('F3')->applyFromArray($style_col);
 $excel->getActiveSheet()->getStyle('G3')->applyFromArray($style_col);
 $excel->getActiveSheet()->getStyle('H3')->applyFromArray($style_col);
+$excel->getActiveSheet()->getStyle('I3')->applyFromArray($style_col);
 
 // Set height baris ke 1, 2 dan 3
 $excel->getActiveSheet()->getRowDimension('1')->setRowHeight(20);
@@ -81,7 +83,7 @@ $excel->getActiveSheet()->getRowDimension('3')->setRowHeight(20);
 // $sql = $pdo->prepare("SELECT a.nim, a.nama, b.nim, b.kategori, b.nilaiD, b.nilaiI, b.nilaiS, b.nilaiC FROM siswa a, nilai b WHERE a.nim = b.nim");
 // $sql->execute(); // Eksekusi querynya
 
-$sql = mysqli_query($mysqli, "SELECT * FROM nilai, siswa WHERE nilai.nim = siswa.nim AND nilai.periode = '$periode[periode]'");
+$sql = mysqli_query($mysqli, "SELECT * FROM nilai, siswa WHERE nilai.nim = siswa.nim AND nilai.periode = '$periode[periode]' ORDER BY nilai.status DESC");
 
 $no = 1; // Untuk penomoran tabel, di awal set dengan 1
 $numrow = 4; // Set baris pertama untuk isi tabel adalah baris ke 4
@@ -97,6 +99,14 @@ while($data = mysqli_fetch_array($sql)){ // Ambil semua data dari hasil eksekusi
 	$excel->setActiveSheetIndex(0)->setCellValueExplicit('G'.$numrow, $data['nilaiS'], PHPExcel_Cell_DataType::TYPE_STRING);
 	$excel->setActiveSheetIndex(0)->setCellValueExplicit('H'.$numrow, $data['nilaiC'], PHPExcel_Cell_DataType::TYPE_STRING);
 
+	if($data['status'] == 'ya'){
+		$status = 'Lolos Seleksi';
+	}else{
+		$status = 'Tidak Lolos Seleksi';
+	}
+
+	$excel->setActiveSheetIndex(0)->setCellValueExplicit('I'.$numrow, $status, PHPExcel_Cell_DataType::TYPE_STRING);
+
 
 	// Apply style row yang telah kita buat tadi ke masing-masing baris (isi tabel)
 	$excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
@@ -107,6 +117,7 @@ while($data = mysqli_fetch_array($sql)){ // Ambil semua data dari hasil eksekusi
 	$excel->getActiveSheet()->getStyle('F'.$numrow)->applyFromArray($style_row);
 	$excel->getActiveSheet()->getStyle('G'.$numrow)->applyFromArray($style_row);
 	$excel->getActiveSheet()->getStyle('H'.$numrow)->applyFromArray($style_row);
+	$excel->getActiveSheet()->getStyle('I'.$numrow)->applyFromArray($style_row);
 
 	$excel->getActiveSheet()->getRowDimension($numrow)->setRowHeight(20);
 
@@ -123,6 +134,7 @@ $excel->getActiveSheet()->getColumnDimension('E')->setWidth(15); // Set width ko
 $excel->getActiveSheet()->getColumnDimension('F')->setWidth(30); // Set width kolom F
 $excel->getActiveSheet()->getColumnDimension('G')->setWidth(30); // Set width kolom G
 $excel->getActiveSheet()->getColumnDimension('H')->setWidth(30); // Set width kolom H
+$excel->getActiveSheet()->getColumnDimension('I')->setWidth(30); // Set width kolom H
 
 // Set orientasi kertas jadi LANDSCAPE
 $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);

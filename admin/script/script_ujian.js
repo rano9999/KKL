@@ -1,4 +1,5 @@
 var save_method, table;
+$("#loading").hide();
 
 //Menampilkan data dengan plugin datatables dan konfigurasi datepicker
 $(function(){

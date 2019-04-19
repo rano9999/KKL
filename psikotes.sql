@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 11 Apr 2019 pada 08.35
--- Versi server: 10.1.37-MariaDB
--- Versi PHP: 7.2.14
+-- Generation Time: Aug 13, 2017 at 04:49 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -25,331 +23,210 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kelompok`
+-- Table structure for table `kelas`
 --
 
-CREATE TABLE `kelompok` (
-  `id` int(11) NOT NULL,
-  `nim` varchar(15) NOT NULL,
-  `kategori` varchar(50) NOT NULL,
-  `kelompok` mediumint(20) NOT NULL,
-  `periode` varchar(20) NOT NULL,
-  `jk` char(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `kelas` (
+  `id_kelas` int(5) NOT NULL,
+  `kelas` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kelompok`
+-- Dumping data for table `kelas`
 --
 
-INSERT INTO `kelompok` (`id`, `nim`, `kategori`, `kelompok`, `periode`, `jk`) VALUES
-(1, '16110130', 'Dominant', 1, '2019', 'L'),
-(2, '17110209', 'Dominant', 2, '2019', 'L'),
-(3, '16110081', 'Dominant', 3, '2019', 'L'),
-(4, '17110018', 'Dominant', 4, '2019', 'L'),
-(5, '17110044', 'Dominant', 5, '2019', 'L'),
-(6, '16110237', 'Dominant', 6, '2019', 'L'),
-(7, '16110338', 'Influencing', 7, '2019', 'L'),
-(8, '16110337', 'Influencing', 8, '2019', 'L'),
-(9, '16110315', 'Influencing', 9, '2019', 'L'),
-(10, '17110020', 'Influencing', 10, '2019', 'L'),
-(11, '17110042', 'Influencing', 11, '2019', 'L'),
-(12, '17110014', 'Influencing', 12, '2019', 'L'),
-(13, '17110046', 'Influencing', 13, '2019', 'L'),
-(14, '17110091', 'Influencing', 1, '2019', 'L'),
-(15, '16120085', 'Influencing', 2, '2019', 'L'),
-(16, '16120063', 'Influencing', 3, '2019', 'L'),
-(17, '16120057', 'Influencing', 4, '2019', 'L'),
-(18, '16120018', 'Influencing', 5, '2019', 'L'),
-(19, '17110273', 'Influencing', 6, '2019', 'L'),
-(20, '17110263', 'Influencing', 7, '2019', 'L'),
-(21, '16120027', 'Influencing', 8, '2019', 'L'),
-(22, '17110229', 'Influencing', 9, '2019', 'L'),
-(23, '16110268', 'Influencing', 10, '2019', 'L'),
-(24, '16110127', 'Influencing', 11, '2019', 'L'),
-(25, '16110026', 'Influencing', 12, '2019', 'L'),
-(26, '16110216', 'Influencing', 13, '2019', 'L'),
-(27, '16110172', 'Influencing', 1, '2019', 'L'),
-(28, '16110174', 'Influencing', 2, '2019', 'L'),
-(29, '16110255', 'Influencing', 3, '2019', 'L'),
-(30, '16110044', 'Influencing', 4, '2019', 'L'),
-(31, '17110162', 'Steadiness', 5, '2019', 'L'),
-(32, '16120074', 'Steadiness', 6, '2019', 'L'),
-(33, '16120087', 'Steadiness', 7, '2019', 'L'),
-(34, '17110059', 'Steadiness', 8, '2019', 'L'),
-(35, '17110056', 'Steadiness', 9, '2019', 'L'),
-(36, '17110186', 'Steadiness', 10, '2019', 'L'),
-(37, '17110191', 'Steadiness', 11, '2019', 'L'),
-(38, '16120023', 'Steadiness', 12, '2019', 'L'),
-(39, '16120002', 'Steadiness', 13, '2019', 'L'),
-(40, '17110297', 'Steadiness', 1, '2019', 'L'),
-(41, '16110060', 'Steadiness', 2, '2019', 'L'),
-(42, '17110245', 'Steadiness', 3, '2019', 'L'),
-(43, '16110058', 'Steadiness', 4, '2019', 'L'),
-(44, '17110247', 'Steadiness', 5, '2019', 'L'),
-(45, '17110244', 'Steadiness', 6, '2019', 'L'),
-(46, '17110242', 'Steadiness', 7, '2019', 'L'),
-(47, '16110105', 'Steadiness', 8, '2019', 'L'),
-(48, '16120139', 'Steadiness', 9, '2019', 'L'),
-(49, '17110050', 'Steadiness', 10, '2019', 'L'),
-(50, '17110243', 'Steadiness', 11, '2019', 'L'),
-(51, '17110008', 'Steadiness', 12, '2019', 'L'),
-(52, '16120062', 'Steadiness', 13, '2019', 'L'),
-(53, '17110004', 'Steadiness', 1, '2019', 'L'),
-(54, '17110002', 'Steadiness', 2, '2019', 'L'),
-(55, '16110223', 'Steadiness', 3, '2019', 'L'),
-(56, '16120216', 'Steadiness', 4, '2019', 'L'),
-(57, '16110316', 'Steadiness', 5, '2019', 'L'),
-(58, '16110232', 'Steadiness', 6, '2019', 'L'),
-(59, '16110310', 'Steadiness', 7, '2019', 'L'),
-(60, '17110006', 'Steadiness', 8, '2019', 'L'),
-(61, '17110016', 'Steadiness', 9, '2019', 'L'),
-(62, '17110017', 'Steadiness', 10, '2019', 'L'),
-(63, '17110047', 'Steadiness', 11, '2019', 'L'),
-(64, '16110152', 'Steadiness', 12, '2019', 'L'),
-(65, '16120175', 'Steadiness', 13, '2019', 'L'),
-(66, '17110032', 'Steadiness', 1, '2019', 'L'),
-(67, '17110030', 'Steadiness', 2, '2019', 'L'),
-(68, '16120180', 'Steadiness', 3, '2019', 'L'),
-(69, '17110024', 'Steadiness', 4, '2019', 'L'),
-(70, '16110191', 'Steadiness', 5, '2019', 'L'),
-(71, '16110208', 'Steadiness', 6, '2019', 'L'),
-(72, '16110011', 'Compliance', 7, '2019', 'L'),
-(73, '16110002', 'Compliance', 8, '2019', 'L'),
-(74, '16120028', 'Compliance', 9, '2019', 'L'),
-(75, '16120017', 'Compliance', 10, '2019', 'L'),
-(76, '17110029', 'Compliance', 11, '2019', 'L'),
-(77, '17110038', 'Compliance', 12, '2019', 'L'),
-(78, '17110055', 'Compliance', 13, '2019', 'L'),
-(79, '17110104', 'Compliance', 1, '2019', 'L'),
-(80, '17110126', 'Compliance', 2, '2019', 'L'),
-(81, '17110158', 'Compliance', 3, '2019', 'L'),
-(82, '17110171', 'Compliance', 4, '2019', 'L'),
-(83, '17110048', 'Compliance', 5, '2019', 'L'),
-(84, '16110096', 'Compliance', 6, '2019', 'L'),
-(85, '17110248', 'Compliance', 7, '2019', 'L'),
-(86, '16110063', 'Compliance', 8, '2019', 'L'),
-(87, '16120013', 'Compliance', 9, '2019', 'L'),
-(88, '16110228', 'Compliance', 10, '2019', 'L'),
-(89, '16120213', 'Dominant', 13, '2019', 'P'),
-(90, '16120058', 'Dominant', 12, '2019', 'P'),
-(91, '16120137', 'Dominant', 11, '2019', 'P'),
-(92, '16120088', 'Influencing', 10, '2019', 'P'),
-(93, '16120064', 'Influencing', 9, '2019', 'P'),
-(94, '16120124', 'Influencing', 8, '2019', 'P'),
-(95, '16120128', 'Influencing', 7, '2019', 'P'),
-(96, '16120155', 'Influencing', 6, '2019', 'P'),
-(97, '16120160', 'Influencing', 5, '2019', 'P'),
-(98, '16120198', 'Influencing', 4, '2019', 'P'),
-(99, '17110252', 'Influencing', 3, '2019', 'P'),
-(100, '16120197', 'Influencing', 2, '2019', 'P'),
-(101, '16110270', 'Influencing', 1, '2019', 'P'),
-(102, '17110005', 'Influencing', 13, '2019', 'P'),
-(103, '17110015', 'Influencing', 12, '2019', 'P'),
-(104, '16120223', 'Steadiness', 11, '2019', 'P'),
-(105, '16120147', 'Steadiness', 10, '2019', 'P'),
-(106, '16110098', 'Steadiness', 9, '2019', 'P'),
-(107, '16120165', 'Steadiness', 8, '2019', 'P'),
-(108, '16120167', 'Steadiness', 7, '2019', 'P'),
-(109, '16120194', 'Steadiness', 6, '2019', 'P'),
-(110, '17110001', 'Steadiness', 5, '2019', 'P'),
-(111, '16110074', 'Steadiness', 4, '2019', 'P'),
-(112, '16120200', 'Steadiness', 3, '2019', 'P'),
-(113, '17110180', 'Steadiness', 2, '2019', 'P'),
-(114, '16120141', 'Steadiness', 1, '2019', 'P'),
-(115, '16120106', 'Steadiness', 13, '2019', 'P'),
-(116, '16120136', 'Steadiness', 12, '2019', 'P'),
-(117, '16110282', 'Steadiness', 11, '2019', 'P'),
-(118, '16120109', 'Steadiness', 10, '2019', 'P'),
-(119, '17110283', 'Steadiness', 9, '2019', 'P'),
-(120, '16120016', 'Steadiness', 8, '2019', 'P'),
-(121, '17110066', 'Steadiness', 7, '2019', 'P'),
-(122, '16120059', 'Steadiness', 6, '2019', 'P'),
-(123, '17110012', 'Steadiness', 5, '2019', 'P'),
-(124, '16120221', 'Compliance', 4, '2019', 'P'),
-(125, '16120192', 'Compliance', 3, '2019', 'P'),
-(126, '16120090', 'Compliance', 2, '2019', 'P'),
-(127, '16120098', 'Compliance', 1, '2019', 'P'),
-(128, '16120103', 'Compliance', 13, '2019', 'P'),
-(129, '16120149', 'Compliance', 12, '2019', 'P'),
-(130, '16110045', 'Compliance', 11, '2019', 'P');
+INSERT INTO `kelas` (`id_kelas`, `kelas`) VALUES
+(5, 'TI 2014 E'),
+(4, 'TI 2014 D'),
+(3, 'TI 2014 C'),
+(2, 'TI 2014 B'),
+(1, 'TI 2014 A'),
+(6, 'TI 2014 F'),
+(7, 'SI 2014 A'),
+(8, 'SI 2014 B'),
+(9, 'SI 2014 C'),
+(10, 'SI 2014 D');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `periode`
+-- Table structure for table `kelas_ujian`
 --
 
-CREATE TABLE `periode` (
-  `id` int(11) NOT NULL,
-  `periode` varchar(20) NOT NULL,
-  `aktif` enum('Ya','Tidak') NOT NULL DEFAULT 'Tidak',
-  `jml_kel` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `kelas_ujian` (
+  `id_ujian` int(5) NOT NULL,
+  `id_kelas` int(5) NOT NULL,
+  `aktif` enum('Y','N') NOT NULL DEFAULT 'N'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `periode`
+-- Dumping data for table `kelas_ujian`
 --
 
-INSERT INTO `periode` (`id`, `periode`, `aktif`, `jml_kel`) VALUES
-(1, '2017', 'Tidak', 12),
-(2, '2018', 'Tidak', 26),
-(3, '2019', 'Ya', 13);
+INSERT INTO `kelas_ujian` (`id_ujian`, `id_kelas`, `aktif`) VALUES
+(84, 22, 'N'),
+(1, 22, 'Y'),
+(1, 21, 'Y'),
+(84, 21, 'N'),
+(84, 1, 'N'),
+(1, 28, 'Y'),
+(83, 22, 'N'),
+(83, 21, 'N'),
+(84, 43, 'N'),
+(84, 28, 'N'),
+(77, 21, 'Y'),
+(77, 1, 'N'),
+(77, 22, 'N'),
+(77, 28, 'N'),
+(77, 43, 'N'),
+(81, 21, 'N'),
+(1, 43, 'Y'),
+(86, 21, 'Y'),
+(85, 21, 'Y'),
+(83, 28, 'N'),
+(81, 22, 'N');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `siswa`
+-- Table structure for table `nilai`
+--
+
+CREATE TABLE `nilai` (
+  `id_nilai` int(10) NOT NULL,
+  `nim` varchar(20) NOT NULL,
+  `id_ujian` int(5) NOT NULL,
+  `acak_soal` text NOT NULL,
+  `jawaban` text NOT NULL,
+  `sisa_waktu` varchar(10) NOT NULL,
+  `kategori` varchar(100) NOT NULL,
+  `nilaiD` int(100) NOT NULL,
+  `nilaiI` int(11) NOT NULL,
+  `nilaiS` int(11) NOT NULL,
+  `nilaiC` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `nilai`
+--
+
+INSERT INTO `nilai` (`id_nilai`, `nim`, `id_ujian`, `acak_soal`, `jawaban`, `sisa_waktu`, `kategori`, `nilaiD`, `nilaiI`, `nilaiS`, `nilaiC`) VALUES
+(98, '14110307', 0, '103,102,100,101,99', '3,1,4,2,1', 'NaN:NaN', 'Conscientiousness', 2, 1, 1, 1),
+(100, '14110298', 0, '119,118,116,117,115,114,113,112,111,109,110,108,107,105,106,104,103,102,100,101,99,120,121,122', '3,1,1,1,3,1,3,2,2,2,4,2,4,4,3,3,1,4,4,4,3,1,3,2', 'NaN:NaN', 'Steadiness', 6, 5, 7, 6),
+(92, '14110227', 0, '103,102,100,101,99', '2,1,3,3,4', 'NaN:NaN', 'Influencing', 1, 1, 2, 1),
+(94, '14110281', 0, '103,102,100,101,99', '4,1,2,3,2', 'NaN:NaN', 'Steadiness', 1, 2, 1, 1),
+(101, '14110291', 0, '119,118,116,117,115,114,113,112,111,109,110,108,107,105,106,104,103,102,100,101,99,120,121,122', '1,2,1,3,4,3,2,4,4,2,3,3,1,3,3,3,3,1,1,1,1,4,4,3', 'NaN:NaN', 'Steadiness', 7, 3, 9, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `siswa`
 --
 
 CREATE TABLE `siswa` (
   `nim` varchar(20) NOT NULL,
   `nama` varchar(100) NOT NULL,
-  `jk` enum('L','P') NOT NULL,
-  `periode` varchar(20) NOT NULL,
-  `kategori` varchar(50) NOT NULL,
-  `tipe` int(11) NOT NULL
+  `password` varchar(50) NOT NULL,
+  `id_kelas` int(5) NOT NULL,
+  `status` varchar(20) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `siswa`
+-- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`nim`, `nama`, `jk`, `periode`, `kategori`, `tipe`) VALUES
-('16110002', 'FAJAR NUZULUR ROCHMAN', 'L', '2019', 'Compliance', 4),
-('16110011', 'SIDIQ ARIEF PRASETYO', 'L', '2019', 'Compliance', 4),
-('16110026', 'RESA ICHSANUDIN', 'L', '2019', 'Influencing', 2),
-('16110044', 'AVIV ZULFI', 'L', '2019', 'Influencing', 2),
-('16110045', 'SINDI ROSITA MULYANI', 'P', '2019', 'Compliance', 4),
-('16110058', 'AGUNG TRI WIBOWO', 'L', '2019', 'Steadiness', 3),
-('16110060', 'YOYO SETIAWAN', 'L', '2019', 'Steadiness', 3),
-('16110063', 'AKHMAD YUSUF FAUZI', 'L', '2019', 'Compliance', 4),
-('16110074', 'SITI HANIFAH', 'P', '2019', 'Steadiness', 3),
-('16110081', 'GAGAS AJI PRATOMO', 'L', '2019', 'Dominant', 1),
-('16110096', 'ANJASMARA', 'L', '2019', 'Compliance', 4),
-('16110098', 'TIKA OKTAVIA', 'P', '2019', 'Steadiness', 3),
-('16110105', 'LUSTIYONO PRASETYO NUGROHO', 'L', '2019', 'Steadiness', 3),
-('16110127', 'LUTFI NUGROHO', 'L', '2019', 'Influencing', 2),
-('16110130', 'OBI HARI SUTRISNO', 'L', '2019', 'Dominant', 1),
-('16110152', 'IBRAHIM ZANI', 'L', '2019', 'Steadiness', 3),
-('16110172', 'AGUNG SAPUTRA', 'L', '2019', 'Influencing', 2),
-('16110174', 'AGUNG PURWANTO', 'L', '2019', 'Influencing', 2),
-('16110191', 'BOSSI BANI MAJID', 'L', '2019', 'Steadiness', 3),
-('16110208', 'AJIB AL HAKIM RAJO MEDAN', 'L', '2019', 'Steadiness', 3),
-('16110216', 'UTOMO BUDI SANTOSO', 'L', '2019', 'Influencing', 2),
-('16110223', 'FATHAN MUBINAN HARTONO', 'L', '2019', 'Steadiness', 3),
-('16110228', 'SUBAYU', 'L', '2019', 'Compliance', 4),
-('16110232', 'AHMAD BAGUS NOVIAN', 'L', '2019', 'Steadiness', 3),
-('16110237', 'ROBERT BETAICA CIPTOSAKTI', 'L', '2019', 'Dominant', 1),
-('16110255', 'PANDU SETYA SUNARTO', 'L', '2019', 'Influencing', 2),
-('16110268', 'WIDI SANTOSA PUTRA', 'L', '2019', 'Influencing', 2),
-('16110270', 'WITRA DWI KUNTORO', 'P', '2019', 'Influencing', 2),
-('16110282', 'AGIA HANA LESTARI', 'P', '2019', 'Steadiness', 3),
-('16110310', 'KEVIN ESA SAPUTRA', 'L', '2019', 'Steadiness', 3),
-('16110315', 'NIZAR MIRZA AFFANDI', 'L', '2019', 'Influencing', 2),
-('16110316', 'IBNU ISWANTORO PRABOWO SUDIBYO', 'L', '2019', 'Steadiness', 3),
-('16110337', 'CAHYA NUR SIDIQ', 'L', '2019', 'Influencing', 2),
-('16110338', 'ANANG AJI WIBOWO', 'L', '2019', 'Influencing', 2),
-('17110001', 'DITA FERDIAN BAYU KUSUMA', 'P', '2019', 'Steadiness', 3),
-('17110002', 'RIZQI MUSTHOFA', 'L', '2019', 'Steadiness', 3),
-('17110004', 'LABIB FAUZI RAMADAN', 'L', '2019', 'Steadiness', 3),
-('17110005', 'NANA SABRINA', 'P', '2019', 'Influencing', 2),
-('17110006', 'BIMA RASENDRIYA INDRASTOTO', 'L', '2019', 'Steadiness', 3),
-('17110008', 'AZIZAN NURHAKIM', 'L', '2019', 'Steadiness', 3),
-('17110012', 'LAELATUL ROFIDA', 'P', '2019', 'Steadiness', 3),
-('17110014', 'SEPTIAN PRIMANSYAH', 'L', '2019', 'Influencing', 2),
-('17110015', 'DEBI INDARTO', 'P', '2019', 'Influencing', 2),
-('17110016', 'ARIEF KURNIA RAMADHANI', 'L', '2019', 'Steadiness', 3),
-('17110017', 'YUSUF SUPRIYATNA', 'L', '2019', 'Steadiness', 3),
-('17110018', 'KURNIAWAN SAPUTRA', 'L', '2019', 'Dominant', 1),
-('17110020', 'AFIF MA\'RUF ESKA', 'L', '2019', 'Influencing', 2),
-('17110024', 'ASEP SETIAJI', 'L', '2019', 'Steadiness', 3),
-('17110029', 'AHMAD ALWI RAHMAN', 'L', '2019', 'Compliance', 4),
-('17110030', 'ENTUK AJI NUGROHO', 'L', '2019', 'Steadiness', 3),
-('17110032', 'AFFAN AZ ZARQONI', 'L', '2019', 'Steadiness', 3),
-('17110038', 'NURAZIS ADHIRAMA PAMUNGKAS', 'L', '2019', 'Compliance', 4),
-('17110042', 'AFREL PUTRA MAHENDRA', 'L', '2019', 'Influencing', 2),
-('17110044', 'ARIF SUPRIYONO', 'L', '2019', 'Dominant', 1),
-('17110046', 'ADAM AMIRUDIN', 'L', '2019', 'Influencing', 2),
-('17110047', 'ABDUL GHOFUR', 'L', '2019', 'Steadiness', 3),
-('17110048', 'ARI NUR RIZKI', 'L', '2019', 'Compliance', 4),
-('17110050', 'FIQRI OCKAS PERDANA', 'L', '2019', 'Steadiness', 3),
-('17110055', 'ZURNAEN EVAN ZIZA RIADHI', 'L', '2019', 'Compliance', 4),
-('17110056', 'FAISAL ISKA UKHRIZA', 'L', '2019', 'Steadiness', 3),
-('17110059', 'SONY GUNAWAN ZEN', 'L', '2019', 'Steadiness', 3),
-('17110066', 'LISNA YANUAR MUKHLIS', 'P', '2019', 'Steadiness', 3),
-('17110091', 'GHAUSHIL BADRI AMIN', 'L', '2019', 'Influencing', 2),
-('17110104', 'CAROKO WASESO YEKTI', 'L', '2019', 'Compliance', 4),
-('17110126', 'MUHAMMAD RIZA FAUZILLAH', 'L', '2019', 'Compliance', 4),
-('17110158', 'YUDHISTIRA JANICE AL SAVA', 'L', '2019', 'Compliance', 4),
-('17110162', 'MOHAMMAD RIZALDI PRADANA', 'L', '2019', 'Steadiness', 3),
-('17110171', 'DANANG RIKIYANTO', 'L', '2019', 'Compliance', 4),
-('17110180', 'UTAMI DINI PUSPITA', 'P', '2019', 'Steadiness', 3),
-('17110186', 'MUHAMAD MACHFUDZ ALDIANSYAH', 'L', '2019', 'Steadiness', 3),
-('17110191', 'GILANG RIZKY MUSTOFA', 'L', '2019', 'Steadiness', 3),
-('17110209', 'MUFLIH DZULFIAN', 'L', '2019', 'Dominant', 1),
-('17110229', 'ALFIAN KUKUH ADITAMA', 'L', '2019', 'Influencing', 2),
-('17110242', 'DIMAS AJI PRASETYO', 'L', '2019', 'Steadiness', 3),
-('17110243', 'ADIT TRI SEPTIAWAN', 'L', '2019', 'Steadiness', 3),
-('17110244', 'WAHYU SURYO NUROHMAN', 'L', '2019', 'Steadiness', 3),
-('17110245', 'PURBO DWI ANGGORO', 'L', '2019', 'Steadiness', 3),
-('17110247', 'WHISNU ADAM FATHURROKHMAN', 'L', '2019', 'Steadiness', 3),
-('17110248', 'RIJAL AMRI MAJID', 'L', '2019', 'Compliance', 4),
-('17110252', 'LAELI NUR HIDAYATI', 'P', '2019', 'Influencing', 2),
-('17110263', 'FIKRI RAMADHAN', 'L', '2019', 'Influencing', 2),
-('17110273', 'WAWA MAISA FINANTO', 'L', '2019', 'Influencing', 2),
-('17110283', 'SUSI SULISTYANINGSIH', 'P', '2019', 'Steadiness', 3),
-('17110297', 'SETYO PRIMA AJI', 'L', '2019', 'Steadiness', 3),
-('16120002', 'IKE ANTIKA DEWI', 'L', '2019', 'Steadiness', 3),
-('16120013', 'MUHAMMAD SYAFIQ IZZAUDIN', 'L', '2019', 'Compliance', 4),
-('16120016', 'ROSDIANA PUTRI PANGESTU', 'P', '2019', 'Steadiness', 3),
-('16120017', 'ZELIN ARIF KRISNA MURTI', 'L', '2019', 'Compliance', 4),
-('16120018', 'DIMAS SETIA HARTADI', 'L', '2019', 'Influencing', 2),
-('16120023', 'DHIKA AULIA ATHHUR', 'L', '2019', 'Steadiness', 3),
-('16120027', 'FIRMAN FAOZI', 'L', '2019', 'Influencing', 2),
-('16120028', 'KRIS TRIO SATRIYONO', 'L', '2019', 'Compliance', 4),
-('16120057', 'KRIS JULIYANTO', 'L', '2019', 'Influencing', 2),
-('16120058', 'WANODYA DWI HANA W', 'P', '2019', 'Dominant', 1),
-('16120059', 'VIKI CAHYANI', 'P', '2019', 'Steadiness', 3),
-('16120062', 'BAYU NAVANTO SADIQ', 'L', '2019', 'Steadiness', 3),
-('16120063', 'ANGGER SEFTIYAN BAGUS BAHARI', 'L', '2019', 'Influencing', 2),
-('16120064', 'INTAN MARTILIA SYAFANGATUN', 'P', '2019', 'Influencing', 2),
-('16120074', 'ADE AGAM', 'L', '2019', 'Steadiness', 3),
-('16120085', 'HANIF SATRIA NUGRAHA', 'L', '2019', 'Influencing', 2),
-('16120087', 'KEVIN ADIYANSAH', 'L', '2019', 'Steadiness', 3),
-('16120088', 'SEPTI UJI LESTARI', 'P', '2019', 'Influencing', 2),
-('16120090', 'LU\'LU ATUN NI\'MAH', 'P', '2019', 'Compliance', 4),
-('16120098', 'WIWIT PURWIYATNI', 'P', '2019', 'Compliance', 4),
-('16120103', 'ALFINA RIZQIYA AUGUSTIN', 'P', '2019', 'Compliance', 4),
-('16120106', 'WILA AUDINA', 'P', '2019', 'Steadiness', 3),
-('16120109', 'CHOIRUNNISA KUSUMAWARDANI', 'P', '2019', 'Steadiness', 3),
-('16120124', 'ASIH UDIANTI', 'P', '2019', 'Influencing', 2),
-('16120128', 'LENNY AMELIA INDRIYANTI', 'P', '2019', 'Influencing', 2),
-('16120136', 'KRISIANA RUPIADI', 'P', '2019', 'Steadiness', 3),
-('16120137', 'TITA KUSUMA WARDANI', 'P', '2019', 'Dominant', 1),
-('16120139', 'M. MIFTAHUDIN', 'L', '2019', 'Steadiness', 3),
-('16120141', 'BELINA INDAH MIANTI', 'P', '2019', 'Steadiness', 3),
-('16120147', 'ESTRIANA KRISDIANTARI', 'P', '2019', 'Steadiness', 3),
-('16120149', 'TRI MURNIATI', 'P', '2019', 'Compliance', 4),
-('16120155', 'RETA DWI ANGGRAENI', 'P', '2019', 'Influencing', 2),
-('16120160', 'WIWIT KURNIA FATHIA', 'P', '2019', 'Influencing', 2),
-('16120165', 'TRIANA NUR SYAMSIYAH', 'P', '2019', 'Steadiness', 3),
-('16120167', 'ANING WAHYUNI', 'P', '2019', 'Steadiness', 3),
-('16120175', 'DUMAWAN NUR SETYADI', 'L', '2019', 'Steadiness', 3),
-('16120180', 'ABDUL AZIZ', 'L', '2019', 'Steadiness', 3),
-('16120192', 'RINDA UTARI', 'P', '2019', 'Compliance', 4),
-('16120194', 'FIKA ZULFA', 'P', '2019', 'Steadiness', 3),
-('16120197', 'DITA KUSUMA', 'P', '2019', 'Influencing', 2),
-('16120198', 'LUTFIA WAHYU ROMADHONI', 'P', '2019', 'Influencing', 2),
-('16120200', 'FARKHANAH SITI FAJAR', 'P', '2019', 'Steadiness', 3),
-('16120213', 'VEGA DELIA YUSI VEBRIANI', 'P', '2019', 'Dominant', 1),
-('16120216', 'RESTA RAMADANI', 'L', '2019', 'Steadiness', 3),
-('16120221', 'PUJI SULIS STIAWATI', 'P', '2019', 'Compliance', 4),
-('16120223', 'DWI SEPTI RAHAYU PRATIWI', 'P', '2019', 'Steadiness', 3);
+INSERT INTO `siswa` (`nim`, `nama`, `password`, `id_kelas`, `status`) VALUES
+('14110307', 'Titik Rosiani', '2c87ee6a9efb3b2587196c21dec0f593', 7, 'off'),
+('14110227', 'Desi Rahmawati', '32d4b1c1d519704379402e28fdb99e87', 9, 'off'),
+('15110284', 'Rilas Agung', 'f86194e5108223325e2c43aa0997bb80', 8, 'off'),
+('14110281', 'Endra Saputra', 'ad991d32eb17e17007e63268f19944b6', 8, 'off'),
+('14110300', 'Rizky Agung', '9f75e281cbe6072bd91a286e64fb6f0d', 5, 'login'),
+('14110283', 'Sholehudin', '2e6366e071e041f3f82c509832783e15', 2, 'off'),
+('14110266', 'Gilang Ramadhan', '69db5264ec7a1ac4b8d56eb11bb9d47b', 5, 'login'),
+('14110301', 'Yohanes Kristanto', '3a0092394aff4908f62eff1f8730d3d4', 4, 'off'),
+('14110293', 'Agustianto', '13fe574ca0b106d51ffa7991b530b3ee', 3, 'off'),
+('14110298', 'Praditans', '10e47d97180f06fff48dea638bf66077', 2, 'login'),
+('14110226', 'Dian restiani', '11f984d3ebfe3f36f88afde6ea344685', 2, 'login'),
+('14110304', 'Meirza Arif', '57b289b3aea71744fa6236a5984019d0', 1, 'off'),
+('14110291', 'Lusiana', '09c79cff71d2b5acd7bf043a2bec2bb6', 7, 'off');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `soal`
+--
+
+CREATE TABLE `soal` (
+  `id_soal` int(5) NOT NULL,
+  `id_ujian` int(5) NOT NULL,
+  `soal` text NOT NULL,
+  `pilihan_1` text NOT NULL,
+  `pilihan_2` text NOT NULL,
+  `pilihan_3` text NOT NULL,
+  `pilihan_4` text NOT NULL,
+  `kunci` int(2) NOT NULL,
+  `kunci2` int(2) NOT NULL,
+  `kunci3` int(2) NOT NULL,
+  `kunci4` int(2) NOT NULL,
+  `urut` int(5) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `soal`
+--
+
+INSERT INTO `soal` (`id_soal`, `id_ujian`, `soal`, `pilihan_1`, `pilihan_2`, `pilihan_3`, `pilihan_4`, `kunci`, `kunci2`, `kunci3`, `kunci4`, `urut`) VALUES
+(119, 0, '<p>Mana yang sesuai dengan diri anda....</p>', '<p>penuh semangat</p>', '<p>pandai bergaul</p>', '<p>tidak mudah cemas akan segala sesuatu</p>', '<p>bertingkah laku baik / &nbsp;bersikap sewajarnya</p>', 1, 2, 3, 4, 0),
+(118, 0, '<p>mana yang tidak sesuai dengan diri anda....</p>', '<p>suka berdebat</p>', '<p>berwatak gembira</p>', '<p>tidak terlalu serius</p>', '<p>mengerjakan sesuatu dengan perintah</p>', 1, 2, 3, 4, 0),
+(116, 0, '<p>Mana yang sesuai dengan diri anda....</p>', '<p>bertekad mencapai hasil</p>', '<p>menunjukan penghargaan</p>', '<p>baik hati</p>', '<p>pasrah</p>', 1, 2, 3, 4, 0),
+(117, 0, '<p>Mana yang tidak sesuai dengan diri anda....</p>', '<p>suka mengambil kesempatan</p>', '<p>selalu berpikir positif</p>', '<p>mengerjakan sesuatu untuk sesama</p>', '<p>menunjukan rasa hormat</p>', 1, 2, 3, 4, 0),
+(115, 0, '<p>Mana yang tidak sesuai dengan diri anda....</p>', '<p>menyelesaikan tugas</p>', '<p>ceria</p>', '<p>bersedia berbagi dengan orang lain</p>', '<p>patuh pada peraturan</p>', 1, 2, 3, 4, 0),
+(114, 0, '<p>Mana yang tidak sesuai dengan diri anda....</p>', '<p>berani mempertahankan hak</p>', '<p>percaya pada kemampuan diri sendiri</p>', '<p>prihatin terhadap sesama</p>', '<p>penuh perhatian terhadap sesama</p>', 1, 2, 3, 4, 0),
+(113, 0, '<p>Mana yang sesuai dengan diri anda....</p>', '<p>bersemangat</p>', '<p>berkeinginan kuat</p>', '<p>bersedia membantu orang lain</p>', '<p>mudah menyetujui / penurut</p>', 1, 2, 3, 4, 0),
+(112, 0, '<p>Mana yang tidak sesuai dengan diri anda...</p>', '<p>siaga / siap berbuat sesuatu</p>', '<p>dapat meyakinkan orang lain terhadap pandangannya</p>', '<p>berkemauan keras / bersungguh-sungguh</p>', '<p>menghindari kesulitan</p>', 1, 2, 3, 4, 0),
+(111, 0, '<p>Mana yang tidak sesuai dengan diri anda...</p>', '<p>memaksa diri berbuat sesuatu</p>', '<p>periang</p>', '<p>mudah memanfaatkan peluang</p>', '<p>takut mengambil keputusan</p>', 1, 2, 3, 4, 0),
+(109, 0, '<p>Mana yang tidak sesuai dengan diri anda....</p>', '<p>suka mengambil keputusan</p>', '<p>suka berbicara</p>', '<p>pengendalian diri</p>', '<p>bekerja sesuai dengan kebiasaan</p>', 1, 2, 3, 4, 0),
+(110, 0, '<p>Mana yang tidak sesuai dengan diri anda....</p>', '<p>Pemberani</p>', '<p>bertata krama</p>', '<p>merasa puas</p>', '<p>hati - hati untuk tidak menyakiti orang lain</p>', 1, 2, 3, 4, 0),
+(108, 0, '<p>Mana yang sesuai dengan diri anda....</p>', '<p>mau mengambil resiko</p>', '<p>baik dan tulus hati</p>', '<p>tenang</p>', '<p>mudah menerima saran</p>', 1, 2, 3, 4, 0),
+(107, 0, '<p>Mana yang tidak sesuai dengan anda....</p>', '<p>tergantung pada diri sendiri, mandiri</p>', '<p>suka bergaul dan bersahabat</p>', '<p>dapat menunggu dengan sabar</p>', '<p>berbicara dengan lembut</p>', 1, 2, 3, 4, 0),
+(105, 0, '<p>Mana yang sesuai dengan anda...</p>', '<p>ingin selalu menang</p>', '<p>suka bergurau</p>', '<p>patuh pada perintah</p>', '<p>ingin segalanya tepat dan akurat</p>', 1, 2, 3, 4, 0),
+(106, 0, '<p>Mana yang sesuai dengan anda....</p>', '<p>ingin selalu menang</p>', '<p>suka bergurau</p>', '<p>patuh pada perintah</p>', '<p>ingin segalanya tepat dan akurat</p>', 1, 2, 3, 4, 0),
+(104, 0, '<p>Mana yang tidak sesuai dengan anda....</p>', '<p>menyukai tantangan</p>', '<p>menyenangkan hati / riang gembira</p>', '<p>penuh pemikiran / perhatian</p>', '<p>mudah bergaul</p>', 1, 2, 3, 4, 0),
+(103, 0, '<p>Mana yang tidak sesuai dengan diri anda...</p>', '<p>memiliki keberanian</p>', '<p>suka menyenangkan orang lain</p>', '<p>tidak mudah kecewa</p>', '<p>bekerja dengan tepat dan cermat</p>', 1, 2, 3, 4, 0),
+(102, 0, '<p>mana yang tidak sesuai dengan diri anda....</p>', '<p>pantang menyerah</p>', '<p>periang</p>', '<p>berusaha menyenangkan orang lain</p>', '<p>mau menerima gagasan baru</p>', 1, 2, 3, 4, 0),
+(100, 0, '<p>Mana yang tidak sesuai dengan diri anda...</p>', '<p>suka pada gagasan sendiri</p>', '<p>ramah kepada orang lain</p>', '<p>baik hati</p>', '<p>mau berkejasama</p>', 1, 2, 3, 4, 0),
+(101, 0, '<p>Mana yang sesuai dengan diri anda...</p>', '<p>berani</p>', '<p>ramah dan menyenangkan</p>', '<p>dapat diandalkan</p>', '<p>mengikuti gagasan orang lain</p>', 1, 2, 3, 4, 0),
+(99, 0, '<p>Mana yang sesuai dengan diri anda...</p>', '<p>mengerjakan sesuatu secara berbeda</p>', '<p>dapat memperngaruhi orang lain untuk setuju</p>', '<p>lemah lembut</p>', '<p>malu</p>', 1, 2, 3, 4, 0),
+(120, 0, '<p>Mana yang tidak sesuai dengan diri anda...</p>', '<p>mengatakan apa yang dipikirkan</p>', '<p>suka berkawan</p>', '<p>berhati-hati untuk tidak terlibat</p>', '<p>ingin segala sesuatu berjalan dengan benar</p>', 1, 2, 3, 4, 0),
+(121, 0, '<p>Mana yang sesuai dengan diri anda....</p>', '<p>mudah merasa bosan&nbsp;</p>', '<p>ingin disukai</p>', '<p>senang membantu teman</p>', '<p>berusaha mengerjakan apa yang diperintahkan</p>', 1, 2, 3, 4, 0),
+(122, 0, '<p>Mana yang tidak sesuai dengan diri anda...</p>', '<p>bersikap baik pada orang lain</p>', '<p>percaya pada orang lain</p>', '<p>puas terhadapa diri sendiri</p>', '<p>tidak suka bersilang pendapat / berdebat</p>', 1, 2, 3, 4, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `ujian`
+--
+
+CREATE TABLE `ujian` (
+  `id_ujian` int(5) NOT NULL,
+  `judul` varchar(50) NOT NULL,
+  `tanggal` date NOT NULL,
+  `waktu` int(5) NOT NULL,
+  `jml_soal` int(3) NOT NULL,
+  `id_user` int(5) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `ujian`
+--
+
+INSERT INTO `ujian` (`id_ujian`, `judul`, `tanggal`, `waktu`, `jml_soal`, `id_user`) VALUES
+(1, 'Ujian Psikotes 2', '0000-00-00', 5, 10, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -361,65 +238,82 @@ CREATE TABLE `user` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_user`, `nama`, `username`, `password`, `level`) VALUES
 (8, 'dita', 'dita', 'e6b047aa9378bce37a5260a949d1ea3e', 'operator'),
-(1, 'Yovie Fesya Pratama', 'admin', 'e00cf25ad42683b3df678c61f42c6bda', 'admin'),
-(9, 'dita1', 'dita1', 'e6b047aa9378bce37a5260a949d1ea3e', 'guru');
+(1, 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `kelompok`
+-- Indexes for table `kelas`
 --
-ALTER TABLE `kelompok`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `kelas`
+  ADD PRIMARY KEY (`id_kelas`);
 
 --
--- Indeks untuk tabel `periode`
+-- Indexes for table `nilai`
 --
-ALTER TABLE `periode`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `nilai`
+  ADD PRIMARY KEY (`id_nilai`);
 
 --
--- Indeks untuk tabel `siswa`
+-- Indexes for table `siswa`
 --
 ALTER TABLE `siswa`
   ADD PRIMARY KEY (`nim`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `soal`
+--
+ALTER TABLE `soal`
+  ADD PRIMARY KEY (`id_soal`);
+
+--
+-- Indexes for table `ujian`
+--
+ALTER TABLE `ujian`
+  ADD PRIMARY KEY (`id_ujian`);
+
+--
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `kelompok`
+-- AUTO_INCREMENT for table `kelas`
 --
-ALTER TABLE `kelompok`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
-
+ALTER TABLE `kelas`
+  MODIFY `id_kelas` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
--- AUTO_INCREMENT untuk tabel `periode`
+-- AUTO_INCREMENT for table `nilai`
 --
-ALTER TABLE `periode`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+ALTER TABLE `nilai`
+  MODIFY `id_nilai` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `soal`
+--
+ALTER TABLE `soal`
+  MODIFY `id_soal` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+--
+-- AUTO_INCREMENT for table `ujian`
+--
+ALTER TABLE `ujian`
+  MODIFY `id_ujian` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+--
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-COMMIT;
-
+  MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

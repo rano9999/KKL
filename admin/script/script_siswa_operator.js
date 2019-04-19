@@ -1,4 +1,5 @@
 var table;
+$("#loading").hide();
 
 //Menampilkan data dengan plugin dataTable
 $(function(){

@@ -15,14 +15,18 @@ create_button("success", "plus-sign", "Tambah", "btn-add", "form_add()");
 
 
 //Membuat header dan footer tabel
-create_table(array("Tahun Periode", "Jumlah Desa", "Aktif", "Aksi"));
+create_table(array("Tahun Periode", "Jumlah Kel/Desa", "Jumlah D", "Jumlah I", "Jumlah S", "Jumlah C", "Aktif", "Aksi"));
 
 //Membuat form tambah dan edit data
 open_form("modal_tahun", "return save_data()");
-   create_textbox("Id Periode", "id_tahun", "text", 6, "", "");
-   create_textbox("Tahun Periode", "periode", "text", 6, "", "required");
-   create_textbox("Jumlah Desa", "jml_kel", "number", 6, "", "required");
-   echo '
+create_textbox("Id Periode", "id_tahun", "text", 6, "", "");
+create_textbox("Tahun Periode", "periode", "text", 6, "", "required");
+create_textbox("Jumlah Desa", "jml_kel", "number", 6, "", "required");
+create_textbox("Jumlah D", "jml_D", "number", 6, "", "required");
+create_textbox("Jumlah I", "jml_I", "number", 6, "", "required");
+create_textbox("Jumlah S", "jml_S", "number", 6, "", "required");
+create_textbox("Jumlah C", "jml_C", "number", 6, "", "required");
+echo '
    <div class="form-group" id="aktif" hidden>
    <label class="col-sm-2 control-label">Aktifasi</label>
    <div class="col-sm-4">

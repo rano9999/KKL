@@ -9,9 +9,9 @@ create_title("user", "Profil User");
 
 echo '<hr/><form id="form-profil" class="form-horizontal" onsubmit="return edit_data()">';
 
-create_textbox("Nama Lengkap", "nama_lengkap", "text", 4, "", 'value="'.$_SESSION['namalengkap'].'" readonly');
-create_textbox("Username", "username", "text", 4, "", 'value="'.$_SESSION['username'].'" readonly');
-create_textbox("Level", "level", "text", 4, "", 'value="'.$_SESSION['leveluser'].'" readonly');
+// create_textbox("Nama Lengkap", "nama_lengkap", "text", 4, "", 'value="'.$_SESSION['namalengkap'].'" readonly');
+// create_textbox("Username", "username", "text", 4, "", 'value="'.$_SESSION['username'].'" readonly');
+// create_textbox("Level", "level", "text", 4, "", 'value="'.$_SESSION['leveluser'].'" readonly');
 create_textbox("Password Lama", "lama", "password", 4, "", "required");
 create_textbox("Password Baru", "baru", "password", 4, "", "required");
 create_textbox("Ulang Password", "ulang", "password", 4, "", "required");

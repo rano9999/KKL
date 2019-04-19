@@ -1,4 +1,5 @@
 var table;
+$("#loading").hide();
 
 $(document).ready(function(){
 

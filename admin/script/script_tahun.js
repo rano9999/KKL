@@ -1,4 +1,5 @@
 var save_method, table;
+$("#loading").hide();
 
 //Menampilkan data ke tabel dengan plugin dataTable
 $(function(){
@@ -35,6 +36,10 @@ function form_edit(id){
          $('#id_tahun').val(data.id).hide();
          $('label[for="id_tahun"]').hide();
          $('#jml_kel').val(data.jml_kel);
+         $('#jml_D').val(data.jml_D);
+         $('#jml_I').val(data.jml_I);
+         $('#jml_S').val(data.jml_S);
+         $('#jml_C').val(data.jml_C);
          $('#periode').val(data.periode);
          $('#aktif').val(data.aktif).attr('hidden',false);
          $('#aktif1').val(data.aktif);

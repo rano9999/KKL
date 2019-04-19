@@ -13,8 +13,13 @@ if($_GET['action'] == "table_data"){
       $row[] = $no;
       $row[] = $r['nim'];
       $row[] = $r['nama'];
+      $row[] = $r['email'];
+      $row[] = substr(md5($r['nim']), 0, 5);
+      $row[] = $r['nohp'];
+      $row[] = $r['alamat'];
       $row[] = $r['jk'];
-      $row[] = $r['kategori'];
+      $row[] = $r['prodi'];
+      $row[] = $r['keaktifan'];
       $row[] = $r['periode'];
       $row[] = create_action($r['nim']);
       $data[] = $row;
@@ -72,29 +77,37 @@ elseif($_GET['action'] == "import"){
   require_once '../PHPExcel/PHPExcel.php';
   $path = "tmp";
   $loadexcel = move_uploaded_file($_FILES['file']['tmp_name'], "$path/$nama_file_baru");
-
+  $tahun = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM periode WHERE aktif = 'Ya'"));
   $excelreader = new PHPExcel_Reader_Excel2007();
   $loadexcel = $excelreader->load('tmp/'.$nama_file_baru);
   $sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
   // Buat query Insert
-	$sql = $pdo->prepare("INSERT INTO siswa VALUES(:nim,:nama,:jk,:periode,:kategori,:tipe)");
+	$sql = $pdo->prepare( "INSERT INTO siswa VALUES(:nim, :nama, :email, :pass, :alamat, :jk, :nohp, :prodi, :keaktifan, :periode, :status)");
   $numrow = 1;
   foreach($sheet as $row){
     // Ambil data pada excel sesuai Kolom
     $nim = $row['B'];
     $nama = $row['C'];
     $jk = $row['D'];
-    $kategori = $row['E'];
-    $periode = $row['F'];
+    $email = $row['E'];
+    $hp = $row['F'];
+    $alamat = $row['G'];
+    $prodi = $row['H'];
+    $keaktifan = $row['I'];
+    $pass = md5(substr(md5($nim), 0, 5));
+    $periode = $tahun['periode'];
+    $status = 'off';
 
-    if( $kategori == 'Dominant'){
-       $tipe = 1;
-    }elseif( $kategori == 'Influencing'){
-       $tipe = 2;
-    }elseif( $kategori == 'Steadiness'){
-       $tipe = 3;
-    }elseif ( $kategori == 'Compliance'){
-       $tipe = 4;
+    if( $keaktifan == 'Ketua'){
+       $aktif = 5;
+    }elseif( $keaktifan == 'Sekretaris'){
+       $aktif = 4;
+    }elseif( $keaktifan == 'Bendahara'){
+       $aktif = 2;
+    }elseif ( $keaktifan == 'Koordinator'){
+       $aktif = 1;
+    }elseif ( $keaktifan == 'Tidak ada'){
+       $aktif = 0;
     }
 
     if(empty($nim) && empty($nama) && empty($pass) && empty($jk))
@@ -104,10 +117,15 @@ elseif($_GET['action'] == "import"){
       // Proses simpan ke Database
       $sql->bindParam(':nim', $nim);
       $sql->bindParam(':nama', $nama);
+      $sql->bindParam( ':email', $email);
+      $sql->bindParam( ':pass', $pass);
+      $sql->bindParam( ':alamat', $alamat);
       $sql->bindParam(':jk', $jk);
+      $sql->bindParam(':nohp', $hp);
+      $sql->bindParam(':prodi', $prodi);
+      $sql->bindParam(':keaktifan', $aktif);
       $sql->bindParam(':periode', $periode);
-      $sql->bindParam(':kategori', $kategori);
-      $sql->bindParam(':tipe', $tipe);
+      $sql->bindParam(':status', $status);
       $sql->execute();
     }
     $numrow++;

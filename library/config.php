@@ -3,7 +3,7 @@
 $host    = "localhost";
 $user    = "root";
 $pass    = "";
-$db      = "psikotes";
+$db      = "kkl";
 
 //Menggunakan objek mysqli untuk membuat koneksi dan menyimpanya dalam variabel $mysqli
 $mysqli = new mysqli($host, $user, $pass, $db);
