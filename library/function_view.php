@@ -13,7 +13,7 @@ function create_button($color, $icon, $text, $class = "", $action=""){
 function create_table($header){
 
    echo'<hr/><div class="table-responsive">
-   <table class="table table-striped" width="100%">
+   <table class="table table-striped" width="100%" style="font-size:15px">
    <thead><tr>
    <th style="width: 10px">No</th>';
 
@@ -43,4 +43,20 @@ function create_action($id, $edit=true, $delete=true){
    if($delete)	$view .= ' <a class="btn btn-danger btn-delete" onclick="delete_data('.$id.')"><i class="glyphicon glyphicon-trash"></i></a>';
    return $view;
 }
+
+//Fungsi untuk membuat tombol aksi pada tabel
+function create_action1($id, $edit = true)
+{
+   $view = " ";
+   if ($edit) $view .= ' <a class="btn btn-primary btn-edit" onclick="form_edit(' . $id . ')"><i class="glyphicon glyphicon-pencil"></i></a>';
+   return $view;
+}
+
+function create_label($id, $class = "")
+{
+   $view = " ";
+   $view .= ' <h5 style="font-size:20px"><span class="label label-'. $class .'">' . $id . '</span></h5>';
+   return $view;
+}
+
 ?>

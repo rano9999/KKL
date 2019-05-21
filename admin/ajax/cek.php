@@ -10,7 +10,7 @@ $jmlI = $cek['jml_I'] * $cek['jml_kel'];
 $jmlS = $cek['jml_S'] * $cek['jml_kel'];
 $jmlC = $cek['jml_C'] * $cek['jml_kel'];
 
-$cekD = mysqli_query($mysqli, "SELECT * FROM nilai WHERE kategori = 'Dominant' ORDER BY nilaiD DESC LIMIT $jmlD");
+$cekD = mysqli_query($mysqli, "SELECT * FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.validasi = 'Valid' AND nilai.kategori = 'Dominant' ORDER BY nilai.nilaiD DESC LIMIT $jmlD");
 $d = 1;
 while ($D = mysqli_fetch_array($cekD)) {
     echo $d . " - " . $D['nim'] . " - " . $D['nilaiD'] . "<br>";
@@ -18,7 +18,7 @@ while ($D = mysqli_fetch_array($cekD)) {
     $d++;
 }
 
-$cekI = mysqli_query($mysqli, "SELECT * FROM nilai WHERE kategori = 'Influencing' ORDER BY nilaiI DESC LIMIT $jmlI");
+$cekI = mysqli_query($mysqli, "SELECT * FROM nilai, siswa WHERE siswa.nim = nilai.nim AND siswa.validasi = 'Valid' AND nilai.kategori = 'Influencing' ORDER BY nilai.nilaiI DESC LIMIT $jmlI");
 $i = 1;
 while ($I = mysqli_fetch_array($cekI)) {
     echo $i . " - " . $I['nim'] . " - " . $I['nilaiD'] . "<br>";
@@ -26,7 +26,7 @@ while ($I = mysqli_fetch_array($cekI)) {
     $i++;
 }
 
-$cekS = mysqli_query($mysqli, "SELECT * FROM nilai WHERE kategori = 'Steadiness' ORDER BY nilaiS DESC LIMIT $jmlS");
+$cekS = mysqli_query($mysqli, "SELECT * FROM nilai, siswa WHERE siswa.nim = nilai.nim AND siswa.validasi = 'Valid' AND nilai.kategori = 'Steadiness' ORDER BY nilai.nilaiS DESC LIMIT $jmlS");
 $s = 1;
 while ($S = mysqli_fetch_array($cekS)) {
     echo $s . " - " . $S['nim'] . " - " . $S['nilaiS'] . "<br>";
@@ -34,7 +34,7 @@ while ($S = mysqli_fetch_array($cekS)) {
     $s++;
 }
 
-$cekC = mysqli_query($mysqli, "SELECT * FROM nilai WHERE kategori = 'Compliance' ORDER BY nilaiC DESC LIMIT $jmlC");
+$cekC = mysqli_query($mysqli, "SELECT * FROM nilai, siswa WHERE siswa.nim = nilai.nim AND siswa.validasi = 'Valid' AND nilai.kategori = 'Compliance' ORDER BY nilai.nilaiC DESC LIMIT $jmlC");
 $c = 1;
 while ($C = mysqli_fetch_array($cekC)) {
     echo $c . " - " . $C['nim'] . " - " . $C['nilaiC'] . "<br>";

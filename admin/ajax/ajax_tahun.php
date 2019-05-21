@@ -13,6 +13,7 @@ if($_GET['action'] == "table_data"){
       $row[] = $no;
       $row[] = $r['periode'];
       $row[] = $r['jml_kel'];
+      $row[] = 10;
       $row[] = $r['jml_D'];
       $row[] = $r['jml_I'];
       $row[] = $r['jml_S'];

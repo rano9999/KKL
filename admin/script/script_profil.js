@@ -1,5 +1,11 @@
 $("#loading").hide();
 
+function form(){
+   $('#enb').click(function () {
+      $('#inp').removeAttr('disabled');
+   });
+}
+
 $(function(){	
    $('#form-profil').submit(function(){
       if($('#baru').val() != $('#ulang').val()){
@@ -13,6 +19,8 @@ $(function(){
                if(data=="ok"){
                   alert("Password berhasil diubah");
                   $('#form-profil')[0].reset();
+                  window.location.href = "./logout.php";
+
                }else{
                   alert(data);
                }

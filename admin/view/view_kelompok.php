@@ -9,9 +9,9 @@ include "../../library/config.php";
 $cekP = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM periode WHERE aktif = 'Ya'"));
 
 create_title("check", "Kelompok KKL Periode " . $cekP['periode']);
-create_button("info", "download", "Export Data Kelompok", "btn-add", "export_kelompok()");
+create_button("info", "download", "Export Data Kelompok to xlsx", "btn-add", "export_kelompok()");
+create_button("primary", "print", "Export Data Kelompok to pdf", "btn-add", "pdf_kelompok()");
 create_button("warning", "download", "Generate Kelompok", "btn-add", "Generate_kelompok()");
-// create_button("primary", "user", "Analisis Kelompok", "btn-add", "analisis_kelompok()");
 
 
 $cek = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM periode WHERE aktif = 'Ya'"));

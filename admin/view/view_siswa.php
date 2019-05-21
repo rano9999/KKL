@@ -13,17 +13,8 @@ create_button("info", "print", "Cetak Kartu", "btn-print", "print_data()");
 create_button("success", "plus-sign", "Tambah", "btn-add", "form_add()");
 create_button("success", "plus-sign", "Import Data", "btn-add", "form_import()");
 
-echo '
-  <div id="alr" class="row" hidden>
-  <div class="col-md-12">
-    <div style="background:#2979FF;color:white; text-align:center" class="alert col-md-12">
-        <b>Berhasil Menambah Data</b>
-    </div>
-  </div>
-  </div>
-  ';
 //Membuat header dan footer tabel
-create_table(array("NIM", "Nama", "Email", "Password", "No HP", "Alamat", "Jenis Kelamin", "Prodi", "Keaktifan", "Periode", "Aksi"));
+create_table(array("NIM", "Nama", "Email", "Password", "No HP", "Alamat", "Jenis Kelamin", "Prodi", "Keaktifan", "Status", "Periode", "Aksi"));
 
 //Membuat form tambah dan edit data
 open_form("modal_siswa", "return save_data()");
@@ -49,13 +40,11 @@ while ($pr = mysqli_fetch_array($qperiode)) {
 <?php
 echo '
    <div class="form-group">
-   <label class="col-sm-2 control-label">Kategori DISC</label>
+   <label class="col-sm-2 control-label">Validasi</label>
    <div class="col-sm-4">
-     <select class="form-control" name="kategori" id="kategori">
-       <option value="Dominant">Dominant</option>
-       <option value="Influencing">Influencing</option>
-       <option value="Steadiness">Steadiness</option>
-       <option value="Conscientiousness">Conscientiousness</option>
+     <select class="form-control" name="valid" id="vvv">
+       <option value="Valid">Valid</option>
+       <option value="Tidak Valid">Tidak Valid</option>
      </select>
      </div>
    </div>

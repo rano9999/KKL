@@ -6,20 +6,20 @@ $cek = mysqli_fetch_array(mysqli_query($mysqli, "SELECT * FROM periode WHERE akt
 $periode = $cek['periode'];
 $jml = $cek['jml_kel'];
 
-$result = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' ORDER BY siswa.jk ASC");
+$result = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.validasi = 'Valid' AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' ORDER BY siswa.jk ASC");
 
 
-$ckLD = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.jk = 'L' AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' AND nilai.kategori = 'Dominant' ORDER BY nilai.kategori ASC");
-$ckPD = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.jk = 'P' AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' AND nilai.kategori = 'Dominant' ORDER BY nilai.kategori ASC");
+$ckLD = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.jk = 'L' AND siswa.validasi = 'Valid' AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' AND nilai.kategori = 'Dominant' ORDER BY nilai.kategori ASC");
+$ckPD = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.jk = 'P' AND siswa.validasi = 'Valid' AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' AND nilai.kategori = 'Dominant' ORDER BY nilai.kategori ASC");
 
-$ckLI = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.jk = 'L' AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' AND nilai.kategori = 'Influencing' ORDER BY nilai.kategori ASC");
-$ckPI = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.jk = 'P' AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' AND nilai.kategori = 'Influencing' ORDER BY nilai.kategori ASC");
+$ckLI = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.jk = 'L' AND siswa.validasi = 'Valid' AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' AND nilai.kategori = 'Influencing' ORDER BY nilai.kategori ASC");
+$ckPI = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.jk = 'P' AND siswa.validasi = 'Valid' AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' AND nilai.kategori = 'Influencing' ORDER BY nilai.kategori ASC");
 
-$ckLS = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.jk = 'L' AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' AND nilai.kategori = 'Steadiness' ORDER BY nilai.kategori ASC");
-$ckPS = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.jk = 'P' AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' AND nilai.kategori = 'Steadiness' ORDER BY nilai.kategori ASC");
+$ckLS = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.jk = 'L' AND siswa.validasi = 'Valid' AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' AND nilai.kategori = 'Steadiness' ORDER BY nilai.kategori ASC");
+$ckPS = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.jk = 'P' AND siswa.validasi = 'Valid' AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' AND nilai.kategori = 'Steadiness' ORDER BY nilai.kategori ASC");
 
-$ckLC = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.jk = 'L' AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' AND nilai.kategori = 'Compliance' ORDER BY nilai.kategori ASC");
-$ckPC = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.jk = 'P' AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' AND nilai.kategori = 'Compliance' ORDER BY nilai.kategori ASC");
+$ckLC = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.jk = 'L' AND siswa.validasi = 'Valid' AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' AND nilai.kategori = 'Compliance' ORDER BY nilai.kategori ASC");
+$ckPC = mysqli_query($mysqli, "SELECT * FROM siswa, nilai WHERE siswa.nim = nilai.nim AND siswa.jk = 'P' AND siswa.validasi = 'Valid' AND siswa.periode = '$cek[periode]' AND nilai.status = 'ya' AND nilai.kormacam = 'anggota' AND nilai.kategori = 'Compliance' ORDER BY nilai.kategori ASC");
 
 
 // dominant

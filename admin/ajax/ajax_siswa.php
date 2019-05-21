@@ -19,8 +19,28 @@ if($_GET['action'] == "table_data"){
       $row[] = $r['alamat'];
       $row[] = $r['jk'];
       $row[] = $r['prodi'];
-      $row[] = $r['keaktifan'];
+      
+      if ($r['keaktifan'] == 5) {
+         $aktif = 'Ketua';
+      } elseif ($r['keaktifan'] == 4) {
+         $aktif = 'Sekretaris';
+      } elseif ($r['keaktifan'] == 3) {
+         $aktif = 'Bendahara';
+      } elseif ($r['keaktifan'] == 2) {
+         $aktif = 'Koordinator';
+      } elseif ($r['keaktifan'] == 1) {
+         $aktif = 'Anggota';
+      } elseif ($r['keaktifan'] == 0) {
+         $aktif = 'Tidak Ada';
+      }
+
+      $row[] = $aktif;
       $row[] = $r['periode'];
+      if($r['validasi'] == 'Valid'){
+         $row[] = create_label( $r['validasi'], "success");
+      }else{
+         $row[] = create_label($r['validasi'], "warning");
+      }
       $row[] = create_action($r['nim']);
       $data[] = $row;
       $no++;
@@ -48,7 +68,7 @@ elseif($_GET['action'] == "insert"){
          nama = '$_POST[nama]',
          jk = '$_POST[jk]',
          periode= '$_POST[periode]',
-         kategori= '$_POST[kategori]'");
+         validasi= '$_POST[valid]'");
       echo "ok";
    }
 }
@@ -59,7 +79,7 @@ elseif($_GET['action'] == "update"){
        nama = '$_POST[nama]',
        jk = '$_POST[jk]',
        periode= '$_POST[periode]',
-       kategori= '$_POST[kategori]'
+       validasi= '$_POST[valid]'
       WHERE nim='$_POST[nim]'");
    echo "ok";
 }
@@ -82,7 +102,7 @@ elseif($_GET['action'] == "import"){
   $loadexcel = $excelreader->load('tmp/'.$nama_file_baru);
   $sheet = $loadexcel->getActiveSheet()->toArray(null, true, true ,true);
   // Buat query Insert
-	$sql = $pdo->prepare( "INSERT INTO siswa VALUES(:nim, :nama, :email, :pass, :alamat, :jk, :nohp, :prodi, :keaktifan, :periode, :status)");
+	$sql = $pdo->prepare( "INSERT INTO siswa VALUES(:nim, :nama, :email, :pass, :alamat, :jk, :nohp, :prodi, :keaktifan, :periode, :tanda, :validasi)");
   $numrow = 1;
   foreach($sheet as $row){
     // Ambil data pada excel sesuai Kolom
@@ -97,16 +117,19 @@ elseif($_GET['action'] == "import"){
     $pass = md5(substr(md5($nim), 0, 5));
     $periode = $tahun['periode'];
     $status = 'off';
+    $validasi = 'Valid';
 
     if( $keaktifan == 'Ketua'){
        $aktif = 5;
     }elseif( $keaktifan == 'Sekretaris'){
        $aktif = 4;
     }elseif( $keaktifan == 'Bendahara'){
-       $aktif = 2;
+       $aktif = 3;
     }elseif ( $keaktifan == 'Koordinator'){
+       $aktif = 2;
+    }elseif ( $keaktifan == 'Anggota'){
        $aktif = 1;
-    }elseif ( $keaktifan == 'Tidak ada'){
+    } elseif ($keaktifan == 'Tidak ada') {
        $aktif = 0;
     }
 
@@ -125,7 +148,8 @@ elseif($_GET['action'] == "import"){
       $sql->bindParam(':prodi', $prodi);
       $sql->bindParam(':keaktifan', $aktif);
       $sql->bindParam(':periode', $periode);
-      $sql->bindParam(':status', $status);
+      $sql->bindParam(':tanda', $status);
+      $sql->bindParam(':validasi', $validasi);
       $sql->execute();
     }
     $numrow++;

@@ -71,16 +71,45 @@ include "../../library/config.php";
             </div>
          <?php }
       if ($cek['seleksi'] == 'ya') {
-         $countD = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nim) as jml FROM nilai WHERE kategori = 'Dominant'"));
-         $countI = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nim) as jml FROM nilai WHERE kategori = 'Influencing'"));
-         $countS = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nim) as jml FROM nilai WHERE kategori = 'Steadiness'"));
-         $countC = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nim) as jml FROM nilai WHERE kategori = 'Compliance'"));
+         $countD = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nilai.nim) as jml FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.validasi = 'Valid' AND nilai.kategori = 'Dominant'"));
+         $countI = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nilai.nim) as jml FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.validasi = 'Valid' AND nilai.kategori = 'Influencing'"));
+         $countS = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nilai.nim) as jml FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.validasi = 'Valid' AND nilai.kategori = 'Steadiness'"));
+         $countC = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nilai.nim) as jml FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.validasi = 'Valid' AND nilai.kategori = 'Compliance'"));
          ?>
             <!-- Default panel contents -->
             <div class="panel-heading">Analisis Kebutuhan Kelompok</div>
             <div class="panel-body">
                <table width="100%">
-                  <tr style="border:1px solid #1b1f70;">
+                  <?php
+                  if ($jmlD > $countD['jml']) {
+                     $bg = 'indianred';
+                     $cl = 'ivory';
+                  } else {
+                     $bg = 'limegreen';
+                     $cl = 'ivory';
+                  }
+                  if ($jmlI > $countI['jml']) {
+                     $bgI = 'indianred';
+                     $clI = 'ivory';
+                  } else {
+                     $bgI = 'limegreen';
+                     $clI = 'ivory';
+                  }
+                  if ($jmlS > $countS['jml']) {
+                     $bgS = 'indianred';
+                     $clS = 'ivory';
+                  } else {
+                     $bgS = 'limegreen';
+                     $clS = 'ivory';
+                  }
+                  if ($jmlC > $countC['jml']) {
+                     $bgC = 'indianred';
+                     $clC = 'ivory';
+                  } else {
+                     $bgC = 'limegreen';
+                     $clC = 'ivory';
+                  } ?>
+                  <tr style="border:1px solid #1b1f70; background-color:<?= $bg ?>; color:<?= $cl ?>;">
                      <td style="width:23%; padding:10px">Jumlah Dominant yg dibutuhkan</td>
                      <td><span class="badge"><?= $jmlD ?></span></td>
                      <td style="width:18%">Jumlah Dominant yg ada</td>
@@ -88,15 +117,15 @@ include "../../library/config.php";
                      <?php if ($jmlD > $countD['jml']) { ?>
                         <td style="width:18%">Kurang Tipe D Sejumlah </td>
                         <td><span class="badge"><?= $jmlD - $countD['jml'] ?></span></td>
-                        <td><a class="btn btn-primary btn-center btn-sm pull-left" id="cek" onclick="cekUlangD()"><i class="glyphicon glyphicon-refresh"></i> </a></td>
+                        <td><a class="btn btn-warning btn-center btn-sm pull-left" id="cek" onclick="cekUlangD()"><i class="glyphicon glyphicon-refresh"></i> </a></td>
                      <?php } else { ?>
                         <td style="width:18%">Lebih Tipe D Sejumlah </td>
                         <td><span class="badge"><?= $countD['jml'] - $jmlD ?></span></td>
-                        <td><a class="btn btn-primary btn-center btn-sm pull-left"><i class="glyphicon glyphicon-ok"></i> </a></td>
+                        <td><a class="btn btn-success btn-center btn-sm pull-left"><i class="glyphicon glyphicon-ok"></i> </a></td>
                      <?php } ?>
                   </tr>
 
-                  <tr style="border:1px solid #1b1f70;">
+                  <tr style="border:1px solid #1b1f70; background-color:<?= $bgI ?>; color:<?= $clI ?>;">
                      <td style="width:23%; padding:10px">Jumlah Influencing yg dibutuhkan</td>
                      <td><span class="badge"><?= $jmlI ?></span></td>
                      <td style="width:18%">Jumlah Influencing yg ada</td>
@@ -104,15 +133,15 @@ include "../../library/config.php";
                      <?php if ($jmlI > $countI['jml']) { ?>
                         <td style="width:18%">Kurang Tipe I Sejumlah </td>
                         <td><span class="badge"><?= $jmlI - $countI['jml'] ?></span></td>
-                        <td><a class="btn btn-primary btn-center btn-sm pull-left" id="cek" onclick="cekUlangI()"><i class="glyphicon glyphicon-refresh"></i> </a></td>
+                        <td><a class="btn btn-warning btn-center btn-sm pull-left" id="cek" onclick="cekUlangI()"><i class="glyphicon glyphicon-refresh"></i> </a></td>
                      <?php } else { ?>
                         <td style="width:18%">Lebih Tipe I Sejumlah </td>
                         <td><span class="badge"><?= $countI['jml'] - $jmlI ?></span></td>
-                        <td><a class="btn btn-primary btn-center btn-sm pull-left"><i class="glyphicon glyphicon-ok"></i> </a></td>
+                        <td><a class="btn btn-success btn-center btn-sm pull-left"><i class="glyphicon glyphicon-ok"></i> </a></td>
                      <?php } ?>
                   </tr>
 
-                  <tr style="border:1px solid #1b1f70;">
+                  <tr style="border:1px solid #1b1f70; background-color:<?= $bgS ?>; color:<?= $clS ?>;">
                      <td style="width:23%; padding:10px">Jumlah Steadiness yg dibutuhkan</td>
                      <td><span class="badge"><?= $jmlS ?></span></td>
                      <td style="width:18%">Jumlah Steadiness yg ada</td>
@@ -120,15 +149,15 @@ include "../../library/config.php";
                      <?php if ($jmlS > $countS['jml']) { ?>
                         <td style="width:18%">Kurang Tipe S Sejumlah </td>
                         <td><span class="badge"><?= $jmlS - $countS['jml'] ?></span></td>
-                        <td><a class="btn btn-primary btn-center btn-sm pull-left" id="cek" onclick="cekUlangS()"><i class="glyphicon glyphicon-refresh"></i> </a></td>
+                        <td><a class="btn btn-warning btn-center btn-sm pull-left" id="cek" onclick="cekUlangS()"><i class="glyphicon glyphicon-refresh"></i> </a></td>
                      <?php } else { ?>
                         <td style="width:18%">Lebih Tipe S Sejumlah </td>
                         <td><span class="badge"><?= $countS['jml'] - $jmlS ?></span></td>
-                        <td><a class="btn btn-primary btn-center btn-sm pull-left"><i class="glyphicon glyphicon-ok"></i> </a></td>
+                        <td><a class="btn btn-success btn-center btn-sm pull-left"><i class="glyphicon glyphicon-ok"></i> </a></td>
                      <?php } ?>
                   </tr>
 
-                  <tr style="border:1px solid #1b1f70;">
+                  <tr style="border:1px solid #1b1f70; background-color:<?= $bgC ?>; color:<?= $clC ?>;">
                      <td style="width:23%; padding:10px">Jumlah Compliance yg dibutuhkan</td>
                      <td><span class="badge"><?= $jmlC ?></span></td>
                      <td style="width:18%">Jumlah Compliance yg ada</td>
@@ -136,11 +165,11 @@ include "../../library/config.php";
                      <?php if ($jmlC > $countC['jml']) { ?>
                         <td style="width:18%">Kurang Tipe C Sejumlah </td>
                         <td><span class="badge"><?= $jmlC - $countC['jml'] ?></span></td>
-                        <td><a class="btn btn-primary btn-center btn-sm pull-left" id="cek" onclick="cekUlangC()"><i class="glyphicon glyphicon-refresh"></i> </a></td>
+                        <td><a class="btn btn-warning btn-center btn-sm pull-left" id="cek" onclick="cekUlangC()"><i class="glyphicon glyphicon-refresh"></i> </a></td>
                      <?php } else { ?>
                         <td style="width:18%">Lebih Tipe C Sejumlah </td>
                         <td><span class="badge"><?= $countC['jml'] - $jmlC ?></span></td>
-                        <td><a class="btn btn-primary btn-center btn-sm pull-left"><i class="glyphicon glyphicon-ok"></i>
+                        <td><a class="btn btn-success btn-center btn-sm pull-left"><i class="glyphicon glyphicon-ok"></i>
                            </a></td>
                      <?php } ?>
                   </tr>

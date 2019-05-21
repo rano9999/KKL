@@ -42,7 +42,7 @@ function form_edit(id){
          $('#nim').val(data.nim).attr('readonly',true);
          $('#nama').val(data.nama);
          $('#periode').val(data.periode);
-         $('#kategori').val(data.kategori);
+         $('#vvv').val(data.validasi);
          $('#jk').val(data.jk);
       },
       error : function(){
@@ -64,7 +64,12 @@ function save_data(){
       success : function(data){
          if(data=="ok"){
             $('#modal_siswa').modal('hide');
-              $('#alr').show();
+            $.notify({
+               title: '<strong>Sukses!</strong>',
+               message: 'Data berhasil di simpan.'
+            }, {
+                  type: 'success'
+               });
             table.ajax.reload();
          }else{
             alert(data);
@@ -85,6 +90,12 @@ function delete_data(id){
          url : "ajax/ajax_siswa.php?action=delete&id="+id,
          type : "GET",
          success : function(data){
+            $.notify({
+               title: '<strong>Sukses!</strong>',
+               message: 'Data berhasil di hapus.'
+            }, {
+                  type: 'success'
+               });
             table.ajax.reload();
          },
          error : function(){
@@ -119,6 +130,12 @@ function import_data(){
       success: function(data) {
          if(data=="ok"){
             $('#modal_import').modal('hide');
+            $.notify({
+               title: '<strong>Sukses!</strong>',
+               message: 'Data berhasil di import.'
+            }, {
+                  type: 'success'
+               });
             table.ajax.reload();
          }else{
             alert(data);

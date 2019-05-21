@@ -5,14 +5,14 @@ ob_start();
 //Mengatur batas login
 $timeout = $_SESSION['timeout'];
 if (time() < $timeout) {
-   $_SESSION['timeout'] = time() + 5000;
+    $_SESSION['timeout'] = time() + 5000;
 } else {
-   $_SESSION['login'] = 0;
+    $_SESSION['login'] = 0;
 }
 
 //Mengecek status login
 if (empty($_SESSION['username']) or empty($_SESSION['password']) or $_SESSION['login'] == 0) {
-   header('location: login.php');
+    header('location: login.php');
 }
 ?>
 
@@ -56,7 +56,7 @@ if (empty($_SESSION['username']) or empty($_SESSION['password']) or $_SESSION['l
 </head>
 
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top" style="background-color:#191c4d">
+    <nav class="navbar navbar-default navbar-fixed-top" style="background-color:#191c4d; color:aliceblue;">
         <div class="container">
             <?php include "menu.php"; ?>
         </div>
@@ -76,6 +76,7 @@ if (empty($_SESSION['username']) or empty($_SESSION['password']) or $_SESSION['l
         </div>
     </footer>
 
+    <script type="text/javascript" src="../assets/bootstrap-notify/bootstrap-notify.min.js"></script>
     <script type="text/javascript" src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../assets/dataTables/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="../assets/dataTables/js/dataTables.bootstrap.min.js"></script>
@@ -84,4 +85,4 @@ if (empty($_SESSION['username']) or empty($_SESSION['password']) or $_SESSION['l
 
 </body>
 
-</html> 
+</html>
