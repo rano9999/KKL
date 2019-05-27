@@ -9,10 +9,10 @@ $jmlI = $cek['jml_I'] * $cek['jml_kel'];
 $jmlS = $cek['jml_S'] * $cek['jml_kel'];
 $jmlC = $cek['jml_C'] * $cek['jml_kel'];
 
-$countD = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nilai.nim) as jml FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.validasi = 'Valid' AND nilai.kategori = 'Dominant'"));
-$countI = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nilai.nim) as jml FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.validasi = 'Valid' AND nilai.kategori = 'Influencing'"));
-$countS = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nilai.nim) as jml FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.validasi = 'Valid' AND nilai.kategori = 'Steadiness'"));
-$countC = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nilai.nim) as jml FROM nilai, siswa WHERE nilai.nim = siswa.nim AND siswa.validasi = 'Valid' AND nilai.kategori = 'Compliance'"));
+$countD = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nilai.nim) as jml FROM nilai, siswa WHERE nilai.nim = siswa.nim AND nilai.kategori = 'Dominant'"));
+$countI = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nilai.nim) as jml FROM nilai, siswa WHERE nilai.nim = siswa.nim AND nilai.kategori = 'Influencing'"));
+$countS = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nilai.nim) as jml FROM nilai, siswa WHERE nilai.nim = siswa.nim AND nilai.kategori = 'Steadiness'"));
+$countC = mysqli_fetch_array(mysqli_query($mysqli, "SELECT count(nilai.nim) as jml FROM nilai, siswa WHERE nilai.nim = siswa.nim AND nilai.kategori = 'Compliance'"));
 
 $kurang = $jmlD - $countD['jml'];
 
